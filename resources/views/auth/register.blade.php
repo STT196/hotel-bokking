@@ -8,7 +8,16 @@
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+        <!-- User Type -->
+        <div class="mt-4">
+            <x-input-label for="user_type" :value="__('User Type')" />
+            <select id="user_type" name="user_type" class="block mt-1 w-full" required>
+            <option value="hotel">{{ __('Hotel') }}</option>
+            <option value="customer">{{ __('Customer') }}</option>
+            </select>
+            <x-input-error :messages="$errors->get('user_type')" class="mt-2" />
 
+        </div>
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />

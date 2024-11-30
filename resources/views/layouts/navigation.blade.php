@@ -16,6 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('profileh')" :active="request()->routeIs('profileh')">
+                        {{ __('Profile') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -34,6 +39,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('homepage')">
+                            {{ __('Website') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[type="checkbox"], [type="radio"] {
+    all: unset; /* Resets all applied styles */
+    appearance: auto; /* Restores default browser styling */
+}

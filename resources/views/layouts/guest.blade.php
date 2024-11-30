@@ -10,7 +10,28 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+        {{-- <!-- datepikar plugin -->
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <!--animate css-->
+        <link rel="stylesheet" type="text/css" href="css/animate.css" />
+        <!--bootstrap css-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <!--fonts css-->
+        <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+        <!--font-awesome css-->
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <!-- carousal css -->
+        <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+        <!-- shortcode css -->
+        <link rel="stylesheet" type="text/css" href="css/shortcode.css">
+        <!-- custom css-->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/responsive.css" /> --}}
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
