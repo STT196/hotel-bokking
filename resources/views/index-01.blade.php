@@ -131,33 +131,7 @@
                                 <h2>Book & Experience Amazing Places</h2>
                                 <h3>Compare 3000+ Hotels at once</h3>
 
-                                <ul>
-                                    <li>
-                                        <span><i class="fas fa-street-view"></i></span>
-                                        <input type="text" placeholder="Your Destination?">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li>
-                                        <span><i class="far fa-calendar-alt"></i></span>
-                                        <input type="text" class="datepicker" placeholder="10-04-2022">
-                                    </li>
-                                    <li class="s-box">
-                                        <span><i class="far fa-user"></i></span>
-                                        <select>
-                                            <option value="">1 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 1 Child</option>
-                                            <option value="">2 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 0 Child</option>
-                                            <option value="">1 Adult - 0 Child</option>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-primary">Search</button>
-                                    </li>
-                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -221,35 +195,29 @@
     <!-- hotel service section start end-->
     <!-- popular hotel slider start -->
 
-
     <div class="container">
         <div class="row">
+            <h3 class="pt-5">Latest Hotels</h3>
+            @foreach ($hotels as $hotel)
+
             <div class="col-xl-4 col-lg-6 pt-4 col-md-6 col-sm-12 col-12">
                 <div class="sub-main">
                     <div class="img-sec p-rel">
                         <div class="hover-img p-rel">
-                            <a href="javascript:;"> <img src="images/blog-1.jpg" alt=""></a>
                         </div>
-                        <span>$77 / Night</span>
+                        <span>Rs {{$hotel->price_from}} / Night</span>
+                        <a href="javascript:;"> <img style="width: 351px; height: 275px" src="{{asset($hotel->thumbnail)}}" alt=""></a>
                     </div>
                     <div class="slider-content">
-                        <span>
-                            <a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i>
-                                <i class="far fa-star"></i><i class="far fa-star"></i> &nbsp; | &nbsp; 88+
-                                Review</a>
-                        </span>
-                        <h5><a href="hotel-single-page.html">hotel sayaji indore</a></h5>
+                        <h5><a href="hotel-single-page.html">{{$hotel->title}}</a></h5>
                         <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                Republic of Cuba,
-                                USA</span></a>
+                               {{$hotel->address}}</span></a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
-
-
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
         <div class="container">

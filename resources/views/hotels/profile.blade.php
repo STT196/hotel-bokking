@@ -397,15 +397,16 @@
                                 <h3>Location &amp; map</h3>
                                 <div class="fields">
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
+                                        {{-- <div class="col-md-6 col-12">
                                             <label class="no_margine">map</label>
-                                            <div class="map_ifram">
-                                                <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.622320563105!2d70.40193721533079!3d20.887267897968485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39587a3a1e316a17%3A0x31f092fe31774bbe!2sSomnath%20Temple!5e0!3m2!1sen!2sin!4v1613653257165!5m2!1sen!2sin"
-                                                    style="border:0;" allowfullscreen="" aria-hidden="false"
-                                                    tabindex="0"></iframe>
+                                            <div class="">
+                                                <x-maps-leaflet id="mapWrapper" style="width: 100%; height: 400px;" :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-leaflet>
+
+
+
+                                                <div id="map"></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6 col-12">
                                             <div class="row">
                                                 <div class="col-12">
@@ -420,11 +421,16 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <label>LONGITUDE</label>
-                                                    <input type="text" name="longitude" placeholder="">
+                                                    <input type="text" name="longitude" placeholder="" id="longitude">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <label>LATITUDE</label>
-                                                    <input type="text" name="latitude" placeholder="">
+                                                    <input type="text" name="latitude" id="latitude" placeholder="">
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-12">
+
+                                                    <a href="#" id="checkLink">Check</a>
                                                 </div>
                                                 <div class="col-12">
                                                     <label>District</label>
@@ -557,5 +563,6 @@
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </div>
 </x-app-layout>
