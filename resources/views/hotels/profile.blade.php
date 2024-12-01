@@ -21,7 +21,9 @@
                 <div class="row">
                     <div class="col-lg-12 col-12">
 
-                        <form class="new_property_box">
+                        <form class="new_property_box" method="POST" action="{{ route('hotel.create') }}"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="form_property">
                                 <h3>Description &amp; Price</h3>
                                 <div class="fields">
@@ -32,13 +34,13 @@
                                         </div>
                                         <div class="col-12">
                                             <label>Description</label>
-                                            <textarea placeholder="" name="discription"></textarea>
+                                            <textarea placeholder="" name="description"></textarea>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>type</label>
                                             <div class="search_filte select-fields">
-                                                <select class="select-box">
-                                                    <option value="" selected="selected">Select a Type</option>
+                                                <select class="select-box" name="type">
+                                                    <option value="" selected="selected" >Select a Type</option>
                                                     <option value="1">1 star</option>
                                                     <option value="2">2 star</option>
                                                     <option value="3">3 star</option>
@@ -53,10 +55,10 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>Status</label>
                                             <div class="search_filte select-fields">
-                                                <select class="select-box">
+                                                <select class="select-box" name="status">
                                                     <option value="" selected="selected">Select a Status</option>
-                                                    <option value="0">available</option>
-                                                    <option value="1">unavailable</option>
+                                                    <option value="1">available</option>
+                                                    <option value="0">unavailable</option>
                                                 </select>
 
                                             </div>
@@ -64,11 +66,11 @@
 
 
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <label>Price</label>
+                                            <label>Price From</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text search_filte select-fields"
                                                     id="basic-addon2">Rs</span>
-                                                <input type="text" class="form-control" placeholder="Per/ Night">
+                                                <input type="text" name="price_from" class="form-control" placeholder="Per/ Night">
                                             </div>
                                         </div>
                                     </div>
@@ -101,27 +103,33 @@
                                         </div>
                                         <h6 class="mt-3">Room Service Added</h6>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox51" type="checkbox" value="1" name="comfort_outside_windows">
+                                            <input id="checkbox51" type="checkbox" value="1"
+                                                name="comfort_outside_windows">
                                             <label for="checkbox51">Outside Windows</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox52" type="checkbox" value="2" name="comfort_tv_cable">
+                                            <input id="checkbox52" type="checkbox" value="1"
+                                                name="comfort_tv_cable">
                                             <label for="checkbox52">TV-Cable or Satellite</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox53" type="checkbox" value="3" name="comfort_ac_room">
+                                            <input id="checkbox53" type="checkbox" value="1"
+                                                name="comfort_ac_room">
                                             <label for="checkbox53">AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox54" type="checkbox" value="4" name="comfort_non_ac_room">
+                                            <input id="checkbox54" type="checkbox" value="1"
+                                                name="comfort_non_ac_room">
                                             <label for="checkbox54">Non-AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox55" type="checkbox" value="5" name="comfort_reception_facility">
+                                            <input id="checkbox55" type="checkbox" value="1"
+                                                name="comfort_reception_facility">
                                             <label for="checkbox55">24x7 Reception Facility</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox56" type="checkbox" value="6" name="comfort_telephone">
+                                            <input id="checkbox56" type="checkbox" value="1"
+                                                name="comfort_telephone">
                                             <label for="checkbox56">Telephone</label>
                                         </div>
                                     </div>
@@ -150,27 +158,33 @@
                                         </div>
                                         <h6 class="mt-3">Room Service Added</h6>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox57" type="checkbox" name="luxury_outside_windows" value="1">
+                                            <input id="checkbox57" type="checkbox" name="luxury_outside_windows"
+                                                value="1">
                                             <label for="checkbox57">Outside Windows</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox58" type="checkbox" name="luxury_tv_cable" value="2">
+                                            <input id="checkbox58" type="checkbox" name="luxury_tv_cable"
+                                                value="1">
                                             <label for="checkbox58">TV-Cable or Satellite</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox59" type="checkbox" name="luxury_ac_room" value="3">
+                                            <input id="checkbox59" type="checkbox" name="luxury_ac_room"
+                                                value="1">
                                             <label for="checkbox59">AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox50" type="checkbox" name="luxury_non_ac_room" value="4">
+                                            <input id="checkbox50" type="checkbox" name="luxury_non_ac_room"
+                                                value="1">
                                             <label for="checkbox50">Non-AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox61" type="checkbox" name="luxury_reception_facility" value="5">
+                                            <input id="checkbox61" type="checkbox" name="luxury_reception_facility"
+                                                value="1">
                                             <label for="checkbox61">24X7 Reception Facility</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox62" type="checkbox" name="luxury_telephone" value="6">
+                                            <input id="checkbox62" type="checkbox" name="luxury_telephone"
+                                                value="1">
                                             <label for="checkbox62">Telephone</label>
                                         </div>
                                     </div>
@@ -199,27 +213,33 @@
                                         </div>
                                         <h6 class="mt-3">Room Service Added</h6>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox71" type="checkbox" name="deluxe_outside_windows" value="1">
+                                            <input id="checkbox71" type="checkbox" name="deluxe_outside_windows"
+                                                value="1">
                                             <label for="checkbox71">Outside Windows</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox72" type="checkbox" name="deluxe_tv_cable" value="2">
+                                            <input id="checkbox72" type="checkbox" name="deluxe_tv_cable"
+                                                value="1">
                                             <label for="checkbox72">TV-Cable or Satellite</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox73" type="checkbox" name="deluxe_ac_room" value="3">
+                                            <input id="checkbox73" type="checkbox" name="deluxe_ac_room"
+                                                value="1">
                                             <label for="checkbox73">AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox74" type="checkbox" name="deluxe_non_ac_room" value="4">
+                                            <input id="checkbox74" type="checkbox" name="deluxe_non_ac_room"
+                                                value="1">
                                             <label for="checkbox74">Non-AC Room</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox75" type="checkbox" name="deluxe_reception_facility" value="5">
+                                            <input id="checkbox75" type="checkbox" name="deluxe_reception_facility"
+                                                value="1">
                                             <label for="checkbox75">24X7 Reception Facility</label>
                                         </div>
                                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox76" type="checkbox" name="deluxe_telephone" value="6">
+                                            <input id="checkbox76" type="checkbox" name="deluxe_telephone"
+                                                value="1">
                                             <label for="checkbox76">Telephone</label>
                                         </div>
                                     </div>
@@ -233,30 +253,35 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label class="no_margine">Facebook</label>
-                                            <input type="text" name="facebook" placeholder="Enter your Facebook URL">
+                                            <input type="text" name="facebook"
+                                                placeholder="Enter your Facebook URL">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>Instagram</label>
                                             <div class="search_filte select-fields">
-                                                <input type="text" name="instagram" placeholder="Enter your Instagram URL">
+                                                <input type="text" name="instagram"
+                                                    placeholder="Enter your Instagram URL">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>Twitter</label>
                                             <div class="search_filte select-fields">
-                                                <input type="text" name="twitter" placeholder="Enter your Twitter URL">
+                                                <input type="text" name="twitter"
+                                                    placeholder="Enter your Twitter URL">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>LinkedIn</label>
                                             <div class="search_filte select-fields">
-                                                <input type="text" name="linkedin" placeholder="Enter your LinkedIn URL">
+                                                <input type="text" name="linkedin"
+                                                    placeholder="Enter your LinkedIn URL">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <label>Pinterest</label>
                                             <div class="search_filte select-fields">
-                                                <input type="text" name="pinterest" placeholder="Enter your Pinterest URL">
+                                                <input type="text" name="pinterest"
+                                                    placeholder="Enter your Pinterest URL">
                                             </div>
                                         </div>
                                     </div>
@@ -272,47 +297,54 @@
                                             <label for="checkbox1">Breakfast</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox2" type="checkbox" name="room_service" value="2">
+                                            <input id="checkbox2" type="checkbox" name="room_service"
+                                                value="1">
                                             <label for="checkbox2">Room Service</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox3" type="checkbox" name="good_interior" value="3">
+                                            <input id="checkbox3" type="checkbox" name="good_interior"
+                                                value="1">
                                             <label for="checkbox3">Good Interior</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox4" type="checkbox" name="transport" value="4">
+                                            <input id="checkbox4" type="checkbox" name="transport" value="1">
                                             <label for="checkbox4">Transport</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox5" type="checkbox" name="good_drinks" value="5">
+                                            <input id="checkbox5" type="checkbox" name="good_drinks" value="1">
                                             <label for="checkbox5">Good Drinks</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox6" type="checkbox" name="internet_access" value="6">
+                                            <input id="checkbox6" type="checkbox" name="internet_access"
+                                                value="1">
                                             <label for="checkbox6">Internet Access</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox7" type="checkbox" name="swimming_pool" value="7">
+                                            <input id="checkbox7" type="checkbox" name="swimming_pool"
+                                                value="1">
                                             <label for="checkbox7">Swimming pool</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox8" type="checkbox" name="gift_shop" value="8">
+                                            <input id="checkbox8" type="checkbox" name="gift_shop" value="1">
                                             <label for="checkbox8">Gift shop</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox9" type="checkbox" name="meeting_facilities" value="9">
+                                            <input id="checkbox9" type="checkbox" name="meeting_facilities"
+                                                value="1">
                                             <label for="checkbox9">Meeting facilities</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox10" type="checkbox" name="sunset_boat_trip" value="10">
+                                            <input id="checkbox10" type="checkbox" name="sunset_boat_trip"
+                                                value="1">
                                             <label for="checkbox10">Sunset boat trip</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox11" type="checkbox" name="security" value="11">
+                                            <input id="checkbox11" type="checkbox" name="security" value="1">
                                             <label for="checkbox11">Security</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="checkbox12" type="checkbox" name="public_computer" value="12">
+                                            <input id="checkbox12" type="checkbox" name="public_computer"
+                                                value="1">
                                             <label for="checkbox12">Public computer</label>
                                         </div>
                                     </div>
@@ -324,15 +356,18 @@
                                 <div class="fields">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio1" type="radio" class="radio-btn" name="room_type" value="comfort_room">
+                                            <input id="radio1" type="radio" class="radio-btn" name="room_type"
+                                                value="comfort_room">
                                             <label for="radio1">Comfort Room</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio2" type="radio" class="radio-btn" name="room_type" value="luxury_service">
+                                            <input id="radio2" type="radio" class="radio-btn" name="room_type"
+                                                value="luxury_service">
                                             <label for="radio2">Luxury Service</label>
                                         </div>
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio3" type="radio" class="radio-btn" name="room_type" value="deluxe_room">
+                                            <input id="radio3" type="radio" class="radio-btn" name="room_type"
+                                                value="deluxe_room">
                                             <label for="radio3">Deluxe Room</label>
                                         </div>
                                     </div>
@@ -345,12 +380,14 @@
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                             <label class="no_margine" for="name">Name</label>
-                                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                                            <input type="text" id="name" name="name"
+                                                placeholder="Enter your name" required>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                             <label for="email">Email Id</label>
-                                            <input type="email" id="email" name="email" placeholder="example@gmail.com" >
+                                            <input type="email" id="email" name="email"
+                                                placeholder="example@gmail.com">
                                         </div>
                                     </div>
                                 </div>
@@ -390,22 +427,37 @@
                                                     <input type="text" name="latitude" placeholder="">
                                                 </div>
                                                 <div class="col-12">
-                                                    <label>LOCATION*</label>
+                                                    <label>District</label>
                                                     <div class="search_filter select-fields">
                                                         <select class="select-box">
                                                             <option value="" selected="selected">Select location
                                                             </option>
-                                                            <option value="104">Agar</option>
-                                                            <option value="105">Alirajpur</option>
-                                                            <option value="106">Anuppur</option>
-                                                            <option value="107">Ashoknagar</option>
-                                                            <option value="108">Balaghat</option>
-                                                            <option value="109">Barwani</option>
-                                                            <option value="92">Bhopal</option>
-                                                            <option value="89">Dewas</option>
-                                                            <option value="90">Indore</option>
-                                                            <option value="93">Mahu</option>
-                                                            <option value="91">Ujjain</option>
+                                                            <option value="Colombo">Colombo</option>
+                                                            <option value="Gampaha">Gampaha</option>
+                                                            <option value="Kalutara">Kalutara</option>
+                                                            <option value="Kandy">Kandy</option>
+                                                            <option value="Matale">Matale</option>
+                                                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                                            <option value="Galle">Galle</option>
+                                                            <option value="Matara">Matara</option>
+                                                            <option value="Hambantota">Hambantota</option>
+                                                            <option value="Jaffna">Jaffna</option>
+                                                            <option value="Kilinochchi">Kilinochchi</option>
+                                                            <option value="Mannar">Mannar</option>
+                                                            <option value="Vavuniya">Vavuniya</option>
+                                                            <option value="Mullaitivu">Mullaitivu</option>
+                                                            <option value="Batticaloa">Batticaloa</option>
+                                                            <option value="Ampara">Ampara</option>
+                                                            <option value="Trincomalee">Trincomalee</option>
+                                                            <option value="Kurunegala">Kurunegala</option>
+                                                            <option value="Puttalam">Puttalam</option>
+                                                            <option value="Anuradhapura">Anuradhapura</option>
+                                                            <option value="Polonnaruwa">Polonnaruwa</option>
+                                                            <option value="Badulla">Badulla</option>
+                                                            <option value="Moneragala">Moneragala</option>
+                                                            <option value="Ratnapura">Ratnapura</option>
+                                                            <option value="Kegalle">Kegalle</option>
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -416,7 +468,7 @@
                             </div>
                             <div class="form_property">
                                 <div class="ex_top_mar">
-                                    <h3>images</h3>
+                                    <h3>Thumbnail images</h3>
                                     <div class="fields">
                                         <div class="row">
                                             <div class="col-12">
@@ -424,7 +476,7 @@
                                                     <!--
                                           <div class="hidden-inputs hidden"></div> -->
                                                     <div class="file-chooser">
-                                                        <input type="file">
+                                                        <input type="file" name="thumbnail">
                                                     </div>
                                                 </div>
                                             </div>
@@ -449,17 +501,61 @@
                 </div>
             </div>
         </div>
-        <!-- add hotel section End-->
+    </div>
+    <!-- add hotel section End-->
+
+    @if ($errors->any())
+        <script>
+            let erroList = '';
+            @foreach ($errors->all() as $error)
+                erroList += '{{ $error }}<br>';
+            @endforeach
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    html: erroList,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: "Error",
+                    text: '{{ session('error') }}',
+                    icon: "error",
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: "Successfully Added!",
+                    // text: "Item Added Succesfully!",
+                    icon: "success",
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
 
 
-
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/shortcode.js"></script>
-        <script src="js/jquery.magnific-popup.js"></script>
-        <script src="js/custom.js"></script>
-
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/shortcode.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </div>
 </x-app-layout>

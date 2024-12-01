@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index-01')
 @section('content')
     <div class="sb_banner_content_wrapper animated-row float_left">
         <div class="container">

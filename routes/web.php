@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index-01');
-})->name('homepage');
+Route::get('/',([WebController::class,'index']))->name('homepage');
 
 Route::get('/test', function () {
     return view('Untitled-1');
@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
 
 require __DIR__.'/auth.php';
