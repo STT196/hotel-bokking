@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use App\Models\District;
 
 class HotelController extends Controller
 {
@@ -14,6 +16,30 @@ class HotelController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
+
+     public function hotelsDashboard(){
+        $new_request = Reservation::with('hotel')->whereHas('hotel', function($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->where('status',0)->get();
+        // dd($new_request);
+        return view('hotels.pending',compact('new_request'));
+    }
+
+     public function history(){
+        $new_request = Reservation::with('hotel')->whereHas('hotel', function($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', '>=', 1)->get();
+        // dd($new_request);
+        return view('hotels.history',compact('new_request'));
+    }
+
+     public function view(){
+        $districts = District::with('city')->get();
+        // dd($districts);
+        return view('hotels.profile',compact('districts'));
+     }
+
+
     public function store(Request $request)
     {
         // Validate the input fields
@@ -58,7 +84,7 @@ class HotelController extends Controller
             'luxury_room_name' => 'nullable|string|max:255',
             'room_type' => 'nullable|string|max:255',
             'type' => 'nullable|numeric',
-            'telephone' => 'required|numeric|max:10',
+            'telephone' => 'required|numeric|min:10',
             'address' => 'nullable|string|max:500',
             'longitude' => 'nullable|numeric',
             'good_interior' => 'nullable|boolean',
@@ -81,7 +107,9 @@ class HotelController extends Controller
             'title' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
             'breakfast' => 'nullable|boolean',
-            'district' => 'nullable|string|max:50',
+            'district' => 'nullable|numeric',
+            'city' => 'nullable|numeric',
+
         ]);
 
         // Save data to the database
@@ -117,6 +145,21 @@ class HotelController extends Controller
         }
 
         $profile->save();
+        return redirect()->back()->with('success', 'Data saved successfully.');
+    }
+
+    public function aprrove($booking){
+        // dd($booking);
+        $hotel = Reservation::find($booking);
+        $hotel->status = 1;
+        $hotel->save();
+        return redirect()->back()->with('success', 'Data saved successfully.');
+    }
+
+    public function decline($booking){
+        $hotel = Reservation::find($booking);
+        $hotel->status = 2;
+        $hotel->save();
         return redirect()->back()->with('success', 'Data saved successfully.');
     }
 }

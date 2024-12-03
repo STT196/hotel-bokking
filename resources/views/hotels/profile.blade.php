@@ -40,7 +40,7 @@
                                             <label>type</label>
                                             <div class="search_filte select-fields">
                                                 <select class="select-box" name="type">
-                                                    <option value="" selected="selected" >Select a Type</option>
+                                                    <option value="" selected="selected">Select a Type</option>
                                                     <option value="1">1 star</option>
                                                     <option value="2">2 star</option>
                                                     <option value="3">3 star</option>
@@ -70,7 +70,8 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text search_filte select-fields"
                                                     id="basic-addon2">Rs</span>
-                                                <input type="text" name="price_from" class="form-control" placeholder="Per/ Night">
+                                                <input type="text" name="price_from" class="form-control"
+                                                    placeholder="Per/ Night">
                                             </div>
                                         </div>
                                     </div>
@@ -417,47 +418,35 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <label>LONGITUDE</label>
-                                                    <input type="text" name="longitude" placeholder="" id="longitude">
+                                                    <input type="text" name="longitude" placeholder=""
+                                                        id="longitude">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <label>LATITUDE</label>
-                                                    <input type="text" name="latitude" id="latitude" placeholder="">
+                                                    <input type="text" name="latitude" id="latitude"
+                                                        placeholder="">
 
                                                 </div>
 
                                                 <div class="col-12">
-                                                    <label>District</label>
                                                     <div class="search_filter select-fields">
-                                                        <select class="select-box" name="district">
-                                                            <option value="" selected="selected">Select location
-                                                            </option>
-                                                            <option value="Colombo">Colombo</option>
-                                                            <option value="Gampaha">Gampaha</option>
-                                                            <option value="Kalutara">Kalutara</option>
-                                                            <option value="Kandy">Kandy</option>
-                                                            <option value="Matale">Matale</option>
-                                                            <option value="Nuwara Eliya">Nuwara Eliya</option>
-                                                            <option value="Galle">Galle</option>
-                                                            <option value="Matara">Matara</option>
-                                                            <option value="Hambantota">Hambantota</option>
-                                                            <option value="Jaffna">Jaffna</option>
-                                                            <option value="Kilinochchi">Kilinochchi</option>
-                                                            <option value="Mannar">Mannar</option>
-                                                            <option value="Vavuniya">Vavuniya</option>
-                                                            <option value="Mullaitivu">Mullaitivu</option>
-                                                            <option value="Batticaloa">Batticaloa</option>
-                                                            <option value="Ampara">Ampara</option>
-                                                            <option value="Trincomalee">Trincomalee</option>
-                                                            <option value="Kurunegala">Kurunegala</option>
-                                                            <option value="Puttalam">Puttalam</option>
-                                                            <option value="Anuradhapura">Anuradhapura</option>
-                                                            <option value="Polonnaruwa">Polonnaruwa</option>
-                                                            <option value="Badulla">Badulla</option>
-                                                            <option value="Moneragala">Moneragala</option>
-                                                            <option value="Ratnapura">Ratnapura</option>
-                                                            <option value="Kegalle">Kegalle</option>
+                                                        <label for="district">District</label>
 
-                                                        </select>
+                                                    <select id="district" name="district" class="form-select">
+                                                        <option value="">Select District</option>
+                                                    </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <div class="search_filter select-fields">
+
+                                                    <label for="city">City</label>
+                                                    <select id="city" name="city" class="form-select disabled" disabled>
+                                                        <option value="">Select City</option>
+                                                    </select>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -502,6 +491,57 @@
         </div>
     </div>
     <!-- add hotel section End-->
+    <script>
+        // Prepare district and city data in JavaScript from Blade data
+        var cities = [
+            @foreach ($districts as $district)
+                {
+                    "districtId": "{{ $district->id }}",
+                    "districtName": "{{ $district->name_en }}",
+                    "cities": [
+                        @foreach ($district->city as $city)
+                            {
+                                "cityName": "{{ $city->name_en }}",
+                                "cityId": "{{ $city->id }}"
+                            },
+                        @endforeach
+                    ]
+                },
+            @endforeach
+        ];
+        // console.log("🚀 ~ $district:", cities)
+
+        $(document).ready(function() {
+
+            // Populate district dropdown
+            let districtOptions = '<option value="">Select District</option>';
+            cities.forEach((elem) => {
+                districtOptions += `<option value="${elem.districtId}">${elem.districtName}</option>`;
+            });
+            // console.log("🚀 ~ $ ~ districtOptions:", $('#district'))
+
+            $('#district').html(districtOptions); // Initialize Select2 on the district dropdown
+            $('#district').select2(); // Initialize Select2 on the district dropdown
+            $('#city').select2(); // Initialize Select2 on the city dropdown
+
+            $('#district').change(function() {
+                const selectedDistrict = cities.find((elem) => elem.districtId == $(this).val());
+
+                if (selectedDistrict) {
+                    let cityOptions = '<option value="">Select City</option>';
+                    selectedDistrict.cities.forEach((city) => {
+                        cityOptions += `<option value="${city.cityId}">${city.cityName}</option>`;
+                    });
+
+                    $('#city').html(cityOptions).prop("disabled", false).removeClass('disabled').select2();
+                } else {
+                    $('#city').html('<option value="">Select City</option>').prop("disabled", true)
+                        .addClass('disabled');
+                }
+            });
+        });
+    </script>
+
 
     @if ($errors->any())
         <script>
@@ -546,16 +586,5 @@
             });
         </script>
     @endif
-
-
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/shortcode.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     </div>
 </x-app-layout>

@@ -77,38 +77,44 @@
                                     @guest
 
                                         <li class="nav-item">
-                                            <a href="{{route('login')}}" class="btn btn-primary">Login</a>
+                                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{route('register')}}" class="btn btn-primary">Register</a>
+                                            <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
                                         </li>
                                     @endguest
                                     @auth
-                                        <li class="nav-item p-rel  ">
-                                            <a href="javascript:;" class="nav-link btn btn-outline-dark">
-                                                {{ Auth::user()->name }}
-                                                <i class="fas fa-caret-down"></i>
-                                            </a>
-                                            <ul class="dropdown-items">
+                                    <li class="nav-item p-rel">
+                                        <a href="javascript:;" class="nav-link btn btn-outline-dark">
+                                            {{ explode(' ', Auth::user()->name)[0] }}
+                                            <i class="fas fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-items">
+                                            @if (Auth::user()->user_type === 'customer')
                                                 <li>
-                                                    <form action="{{ route('dashboard') }}" method="GET">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-outline"> Dashboard</button>
-                                                    </form>
-                                                </li>
-                                                <li>
-                                                    <form action="{{ route('logout') }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-outline"> Logout</button>
-                                                    </form>
-                                                </li>
+                                                    <form action="{{ route('cus.pending') }}" method="GET">
 
-                                            </ul>
-                                        </li>
-                                        {{-- <li class="nav-item">
-                                        <a href="register" class="btn btn-outline-dark">Register</a>
-                                    </li> --}}
-                                    @endauth
+                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
+                                                    </form>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <form action="{{ route('pending') }}" method="GET">
+
+                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
+                                                    </form>
+                                                </li>
+                                            @endif
+                                            <li>
+                                                <form action="{{ route('logout') }}" method="POST">
+
+                                                    <button type="submit" class="btn btn-outline">Logout</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endauth
+
                                 </ul>
                             </nav>
 
@@ -128,20 +134,27 @@
                 <a href="#"><img src="images/logo.png" alt=""></a>
             </div>
             <div id='cssmenu'>
-
                 <ul>
                     <li><a href="{{ route('homepage') }}">Home</a></li>
                     <li><a href="{{ route('hotels') }}">Hotels</a></li>
                     @auth
                         <li>
-                            <form action="{{ route('dashboard') }}" method="GET">
-                                @csrf
-                                <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
-                            </form>
+                            @if (Auth::user()->user_type == 'customer')
+                                <form action="{{ route('cus.pending') }}" method="GET">
+
+                                    <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
+                                </form>
+                            @else
+                                <form action="{{ route('pending') }}" method="GET">
+
+                                    <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
+                                </form>
+                            @endif
+
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
-                                @csrf
+
                                 <button type="submit" class="btn btn-outline ps-3"> Logout</button>
                             </form>
                         </li>
@@ -168,12 +181,12 @@
 
     <!--HEADER END-->
     <!-- sign up banner start-->
-@yield('content')
+    @yield('content')
 
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
         <div class="d-flex justify-content-center">
-            <p>Copyright ©  </p>
+            <p>Copyright © </p>
         </div>
     </footer>
 

@@ -28,6 +28,10 @@
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
     <!-- shortcode css -->
     <link rel="stylesheet" type="text/css" href="css/shortcode.css">
+      <!-- Select2 CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+      <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
+
     <!-- custom css-->
     {{-- <link rel="stylesheet" type="text/css" href="css/style.css" /> --}}
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
@@ -36,6 +40,20 @@
     crossorigin=""/> --}}
     <!--favicon-->
     <!-- Scripts -->
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('js/shortcode.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+</body>
     @vite(['resources/css/app.css', 'resources/js/app.js','public/css/style.css'])
 </head>
 

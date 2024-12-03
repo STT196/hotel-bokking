@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\WebController;
@@ -20,21 +21,28 @@ Route::get('/hotels', function () {
     return view('hotels');
 })->name('hotels');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified','hotel'])->group(function () {
+    Route::get('/pending', [HotelController::class, 'hotelsDashboard'])->name('pending');
+    Route::get('/history', [HotelController::class, 'history'])->name('history');
+    Route::get('/approve/{booking}', [HotelController::class, 'aprrove'])->name('approve');
+    Route::get('/decline/{booking}', [HotelController::class, 'decline'])->name('decline');
+    Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
+    Route::get('/profileh', [HotelController::class, 'view'])->name('profileh');
+});
+Route::middleware(['auth', 'verified','hotel'])->group(function () {
 
-Route::get('/profileh', function () {
-    return view('hotels.profile');
-})->middleware(['auth', 'verified'])->name('profileh');
+    Route::get('/customer/pending', [CustomerController::class, 'pending'])->name('cus.pending');
+    Route::get('/customer/history', [CustomerController::class, 'history'])->name('cus.history');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
 });
 
 Route::get('/hotel/{hotel}', [WebController::class, 'show'])->name('hotel.show');
+Route::post('/reserve', [WebController::class, 'reserve'])->name('hotel.reserve')->middleware('booking');
 
 require __DIR__.'/auth.php';

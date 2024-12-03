@@ -29,7 +29,7 @@
                         <div class="pt-20">
                             <a href="" class="text-color"><span><i
                                         class="fas fa-map-marker-alt text-color"></i></span>
-                                {{ $details->address }}, {{ $details->zip_code }}, {{ $details->district }} </a>
+                                {{ $details->address }}, {{$details->cities->name_en}},{{ $details->districts->name_en }}, {{ $details->zip_code }}  </a>
 
                         </div>
                         <div class="pt-20">
@@ -287,8 +287,8 @@
                     <div class="hs-slidebar sb-grid-main-wrapper p-0">
                         <div class="find-us-wrapper pb-0">
                             <h4 class="pb-20"><a href="javascript:;">Check Availability</a></h4>
-                            <form id="form" action="" method="Post">
-
+                            <form id="form" action="{{route('hotel.reserve')}}" method="Post">
+                                @csrf
                                 <ul>
                                     <li>
                                         <input type="text" placeholder="Name" value="{{Auth::user() ? Auth::user()->name : ''}}" name="name" required>
@@ -303,8 +303,8 @@
 
                                     </li>
                                     <li>
-                                        <input name="stardate" type="text" name="picker" class="datepicker" placeholder="{{ date('d-m-Y') }}" value="{{ date('d-m-Y') }}">
-                                        <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
+                                        <input id="bookingFrom" name="start_date" type="date"  class="" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">
+                                        {{-- <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 19 20" width="19" height="20">
                                             <title>Icon </title>
                                             <style>
@@ -319,11 +319,12 @@
                                             <path id="Icon" class="shp0"
                                                 d="M17.94 5.32C17.83 4.78 17.57 4.3 17.2 3.93C17.08 3.82 16.95 3.7 16.8 3.61L16.78 3.59C16.77 3.57 16.75 3.57 16.73 3.56C16.67 3.52 16.62 3.48 16.56 3.46L16.54 3.46C16.15 3.26 15.72 3.15 15.23 3.15L14.07 3.15L14.07 2.35C14.07 2.17 13.93 2 13.72 2C13.53 2 13.36 2.15 13.36 2.35L13.36 3.11L6.65 3.11L6.65 2.35C6.65 2.17 6.49 2 6.3 2C6.11 2 5.94 2.15 5.94 2.35L5.94 3.11L4.78 3.11C4.43 3.11 4.07 3.18 3.76 3.31C3.4 3.46 3.08 3.67 2.82 3.93C2.67 4.08 2.54 4.24 2.43 4.41C2.32 4.59 2.22 4.78 2.15 4.98C2.11 5.09 2.07 5.21 2.06 5.32C2.02 5.5 2 5.69 2 5.87L2 7.73L2 16.27C2 17.03 2.32 17.72 2.8 18.2C3.31 18.7 4 19 4.75 19L15.25 19C16.02 19 16.71 18.68 17.2 18.2C17.7 17.7 18 17.01 18 16.27L18 7.73L18 5.87C18 5.69 17.98 5.5 17.94 5.32ZM2.73 5.85C2.73 5.71 2.75 5.58 2.77 5.45C2.78 5.32 2.84 5.19 2.88 5.06C2.95 4.89 3.05 4.74 3.14 4.61C3.2 4.54 3.25 4.48 3.31 4.41C3.42 4.3 3.55 4.2 3.68 4.11C4 3.93 4.35 3.82 4.75 3.82L5.91 3.82L5.91 4.57C5.91 4.76 6.06 4.93 6.26 4.93C6.45 4.93 6.62 4.78 6.62 4.57L6.62 3.82L13.42 3.82L13.42 4.57C13.42 4.76 13.57 4.93 13.78 4.93C13.96 4.93 14.13 4.78 14.13 4.57L14.13 3.82L15.29 3.82C15.68 3.82 16.06 3.93 16.36 4.11C16.49 4.2 16.62 4.3 16.73 4.41C17.01 4.69 17.21 5.04 17.29 5.45C17.31 5.58 17.33 5.72 17.33 5.85L17.33 7.37L2.73 7.37L2.73 5.85ZM17.35 16.25C17.35 16.83 17.12 17.35 16.75 17.72C16.37 18.09 15.85 18.31 15.29 18.31L4.78 18.31C4.22 18.31 3.7 18.09 3.33 17.72C2.95 17.35 2.73 16.83 2.73 16.27L2.73 8.06L17.35 8.06L17.35 16.25L17.35 16.25Z">
                                             </path>
-                                        </svg>
+                                        </svg> --}}
                                     </li>
+                                    <input type="hidden" name="hotel_id" value="{{ $details->id }}">
                                     <li>
-                                        <input name="enddate" type="text" name="picker" class="datepicker" placeholder="{{ date('d-m-Y') }}" value="{{ date('d-m-Y')}}">
-                                        <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
+                                        <input id="bookingTo" name="end_date" type="date"  class="" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d')}}">
+                                        {{-- <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 19 20" width="19" height="20">
                                             <title>Icon </title>
                                             <style>
@@ -338,7 +339,7 @@
                                             <path id="Icon1" class="shp0"
                                                 d="M17.94 5.32C17.83 4.78 17.57 4.3 17.2 3.93C17.08 3.82 16.95 3.7 16.8 3.61L16.78 3.59C16.77 3.57 16.75 3.57 16.73 3.56C16.67 3.52 16.62 3.48 16.56 3.46L16.54 3.46C16.15 3.26 15.72 3.15 15.23 3.15L14.07 3.15L14.07 2.35C14.07 2.17 13.93 2 13.72 2C13.53 2 13.36 2.15 13.36 2.35L13.36 3.11L6.65 3.11L6.65 2.35C6.65 2.17 6.49 2 6.3 2C6.11 2 5.94 2.15 5.94 2.35L5.94 3.11L4.78 3.11C4.43 3.11 4.07 3.18 3.76 3.31C3.4 3.46 3.08 3.67 2.82 3.93C2.67 4.08 2.54 4.24 2.43 4.41C2.32 4.59 2.22 4.78 2.15 4.98C2.11 5.09 2.07 5.21 2.06 5.32C2.02 5.5 2 5.69 2 5.87L2 7.73L2 16.27C2 17.03 2.32 17.72 2.8 18.2C3.31 18.7 4 19 4.75 19L15.25 19C16.02 19 16.71 18.68 17.2 18.2C17.7 17.7 18 17.01 18 16.27L18 7.73L18 5.87C18 5.69 17.98 5.5 17.94 5.32ZM2.73 5.85C2.73 5.71 2.75 5.58 2.77 5.45C2.78 5.32 2.84 5.19 2.88 5.06C2.95 4.89 3.05 4.74 3.14 4.61C3.2 4.54 3.25 4.48 3.31 4.41C3.42 4.3 3.55 4.2 3.68 4.11C4 3.93 4.35 3.82 4.75 3.82L5.91 3.82L5.91 4.57C5.91 4.76 6.06 4.93 6.26 4.93C6.45 4.93 6.62 4.78 6.62 4.57L6.62 3.82L13.42 3.82L13.42 4.57C13.42 4.76 13.57 4.93 13.78 4.93C13.96 4.93 14.13 4.78 14.13 4.57L14.13 3.82L15.29 3.82C15.68 3.82 16.06 3.93 16.36 4.11C16.49 4.2 16.62 4.3 16.73 4.41C17.01 4.69 17.21 5.04 17.29 5.45C17.31 5.58 17.33 5.72 17.33 5.85L17.33 7.37L2.73 7.37L2.73 5.85ZM17.35 16.25C17.35 16.83 17.12 17.35 16.75 17.72C16.37 18.09 15.85 18.31 15.29 18.31L4.78 18.31C4.22 18.31 3.7 18.09 3.33 17.72C2.95 17.35 2.73 16.83 2.73 16.27L2.73 8.06L17.35 8.06L17.35 16.25L17.35 16.25Z">
                                             </path>
-                                        </svg>
+                                        </svg> --}}
                                     </li>
                                     <li>
                                         <select  id="SelectChild" name="adult_count">
@@ -407,11 +408,91 @@
             </div>
         </div>
     </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const startDateInput = document.getElementById('bookingFrom');
+            const endDateInput = document.getElementById('bookingTo');
+            const roomTypeInput = document.getElementById('SelectChild2');
+            const totalPriceInput = document.getElementById('tamount');
+            totalPriceInput.textContent = ` `;
+            const roomPrices = {
+                1: {{ (double) $details->crn_price }},
+                2: {{ (double) $details->luxury_room_price }},
+                3: {{ (double) $details->deluxe_room_price }}
+            };
+            // console.log(roomPrices);
+            function calculateTotalPrice() {
+                const startDate = new Date(startDateInput.value);
+                const endDate = new Date(endDateInput.value);
+                const roomType = roomTypeInput.value;
+
+                if (startDate && endDate && roomType) {
+                    const timeDiff = endDate - startDate;
+                    const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+                    const roomPrice = roomPrices[roomType];
+                    const totalPrice = days * roomPrice;
+
+                    totalPriceInput.value = totalPrice.toFixed(2);
+                }
+                // console.log(totalPriceInput.value);
+                totalPriceInput.textContent = `Rs ${totalPriceInput.value}`;
+            }
+
+            startDateInput.addEventListener('change', calculateTotalPrice);
+            endDateInput.addEventListener('change', calculateTotalPrice);
+            roomTypeInput.addEventListener('change', calculateTotalPrice);
+        });
+    </script>
+<script>
+$(document).ready(function() {
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd', // Ensure the date picker format is 'YYYY-MM-DD'
+        autoclose: true
+    });
+
+    // If you need to manually convert before form submission
+    $('#bookingForm').submit(function(e) {
+        var startDate = $('#bookingFrom').val();
+        var dateParts = startDate.split('-'); // Split into [YYYY, MM, DD]
+
+        // If the format is MM/DD/YYYY, you can convert it to YYYY-MM-DD
+        // You can add more logic here if necessary
+
+        // Ensure the input value is in the correct format (YYYY-MM-DD)
+        $('#bookingFrom').val(dateParts.join('-'));  // Reformat if needed
+
+        // The form will be submitted with the correctly formatted value
+    });
+});
+
+    </script>
+    <script>
+        $(document).ready(function() {
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd', // Ensure the date picker format is 'YYYY-MM-DD'
+        autoclose: true
+    });
+
+    // If you need to manually convert before form submission
+    $('#bookingTo').submit(function(e) {
+        var startDate = $('#bookingTo').val();
+        var dateParts = startDate.split('-'); // Split into [YYYY, MM, DD]
+
+        // If the format is MM/DD/YYYY, you can convert it to YYYY-MM-DD
+        // You can add more logic here if necessary
+
+        // Ensure the input value is in the correct format (YYYY-MM-DD)
+        $('#bookingTo').val(dateParts.join('-'));  // Reformat if needed
+
+        // The form will be submitted with the correctly formatted value
+    });
+});
+        </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const roomTypeSelect = document.getElementById("SelectChild2");
         const amountLabel = document.getElementById("amount");
-        const TotalamountLabel = document.getElementById("tamount");
+
 
         roomTypeSelect.addEventListener("change", function () {
             const roomType = this.value;
@@ -432,7 +513,7 @@
             }
 
             amountLabel.textContent = `Rs ${price}`;
-            TotalamountLabel.textContent = `Rs ${price}`;
+
         });
     });
 </script>

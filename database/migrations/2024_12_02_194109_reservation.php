@@ -17,13 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('hotel_id');
             $table->string('name');
             $table->string('email');
-            $table->string('tpnumber');
+            $table->integer('tpnumber');
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('adult_count');
             $table->integer('child_count');
             $table->string('room_type');
-            $table->decimal('amount', 8, 2);
+            $table->integer('status')->default(0);
+            // $table->decimal('amount', 8, 2);
             $table->timestamps();
 
         });

@@ -94,7 +94,7 @@
                                             </a>
                                             <ul class="dropdown-items">
                                                 <li>
-                                                    <form action="{{ route('dashboard') }}" method="GET">
+                                                    <form action="{{ route('pending') }}" method="GET">
                                                         @csrf
                                                         <button type="submit" class="btn btn-outline"> Dashboard</button>
                                                     </form>
@@ -156,7 +156,7 @@
                     <li><a href="{{ route('hotels') }}">Hotels</a></li>
                     @auth
                         <li>
-                            <form action="{{ route('dashboard') }}" method="GET">
+                            <form action="{{ route('pending') }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
                             </form>
@@ -195,32 +195,7 @@
     <!-- hotel service section start end-->
     <!-- popular hotel slider start -->
 
-    <div class="container">
-        <div class="row">
-            <h3 class="pt-5">Latest Hotels</h3>
-            @isset($hotels)
 
-                @foreach ($hotels as $hotel)
-                    <div class="col-xl-4 col-lg-6 pt-4 col-md-6 col-sm-12 col-12">
-                        <div class="sub-main">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                </div>
-                                <span>Rs {{ $hotel->price_from }} / Night</span>
-                                <a href="javascript:;"> <img style="width: 351px; height: 275px"
-                                        src="{{ asset($hotel->thumbnail) }}" alt=""></a>
-                            </div>
-                            <div class="slider-content">
-                                <h5><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->title }}</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $hotel->address }}</span></a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
-        </div>
-    </div>
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
         <div class="container">

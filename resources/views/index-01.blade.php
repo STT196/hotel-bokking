@@ -87,31 +87,36 @@
                                         </li>
                                     @endguest
                                     @auth
-                                        <li class="nav-item p-rel  ">
-                                            <a href="javascript:;" class="nav-link btn btn-outline-dark">
-                                                {{ Auth::user()->name }}
-                                                <i class="fas fa-caret-down"></i>
-                                            </a>
-                                            <ul class="dropdown-items">
+                                    <li class="nav-item p-rel">
+                                        <a href="javascript:;" class="nav-link btn btn-outline-dark">
+                                            {{ explode(' ', Auth::user()->name)[0] }}
+                                            <i class="fas fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-items">
+                                            @if (Auth::user()->user_type === 'customer')
                                                 <li>
-                                                    <form action="{{ route('dashboard') }}" method="GET">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-outline"> Dashboard</button>
-                                                    </form>
-                                                </li>
-                                                <li>
-                                                    <form action="{{ route('logout') }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-outline"> Logout</button>
-                                                    </form>
-                                                </li>
+                                                    <form action="{{ route('cus.pending') }}" method="GET">
 
-                                            </ul>
-                                        </li>
-                                        {{-- <li class="nav-item">
-                                        <a href="register" class="btn btn-outline-dark">Register</a>
-                                    </li> --}}
-                                    @endauth
+                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
+                                                    </form>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <form action="{{ route('pending') }}" method="GET">
+
+                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
+                                                    </form>
+                                                </li>
+                                            @endif
+                                            <li>
+                                                <form action="{{ route('logout') }}" method="POST">
+
+                                                    <button type="submit" class="btn btn-outline">Logout</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endauth
                                 </ul>
                             </nav>
 
@@ -155,19 +160,27 @@
                     <li><a href="{{ route('homepage') }}">Home</a></li>
                     <li><a href="{{ route('hotels') }}">Hotels</a></li>
                     @auth
-                        <li>
-                            <form action="{{ route('dashboard') }}" method="GET">
-                                @csrf
+                    <li>
+                        @if (Auth::user()->user_type == 'customer')
+                            <form action="{{ route('cus.pending') }}" method="GET">
+
                                 <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
                             </form>
-                        </li>
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-outline ps-3"> Logout</button>
+                        @else
+                            <form action="{{ route('pending') }}" method="GET">
+
+                                <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
                             </form>
-                        </li>
-                    @endauth
+                        @endif
+
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+
+                            <button type="submit" class="btn btn-outline ps-3"> Logout</button>
+                        </form>
+                    </li>
+                @endauth
                     @guest
                         <li><a href="{{ route('login') }}">Login</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
@@ -213,7 +226,7 @@
                             <div class="slider-content">
                                 <h5><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->title }}</a></h5>
                                 <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $hotel->address }}, {{ $hotel->zip_code }}, {{ $hotel->district }}</span></a>
+                                    {{ $hotel->address }}, {{ optional($hotel->cities)->name_en }}, {{ optional($hotel->districts)->name_en }}</span></a>
                             </div>
                         </div>
                     </div>

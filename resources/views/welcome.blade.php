@@ -174,3 +174,47 @@
         </div>
     </body>
 </html>
+
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+            <div class="flex justify-between">
+                <a href="{{ route('bookings.create') }}" class="text-white px-4 py-2 bg-green-500 hover:bg-green-600 rounded-md">Book Now</a>
+                <a href="{{ route('bookings.index') }}" class="text-white px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md">Booking History</a>
+            </div>
+            <table class="table-auto w-full mt-6">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Name</th>
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Phone</th>
+                        <th class="px-4 py-2">Checkin</th>
+                        <th class="px-4 py-2">Checkout</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($bookings as $booking)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $booking->name }}</td>
+                        <td class="border px-4 py-2">{{ $booking->email }}</td>
+                        <td class="border px-4 py-2">{{ $booking->phone }}</td>
+                        <td class="border px-4 py-2">{{ $booking->checkin }}</td>
+                        <td class="border px-4 py-2">{{ $booking->checkout }}</td>
+                        <td class="border px-4 py-2">
+                            <a href="{{ route('bookings.show', $booking->id) }}" class="text-blue-600 hover:text-blue-800 underline">Show</a>
+                            <a href="{{ route('bookings.edit', $booking->id) }}" class="text-yellow-600 hover:text-yellow-800 underline">Edit</a>
+                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-800 underline">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">

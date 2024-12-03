@@ -74,11 +74,23 @@ class Hotel extends Model
         'status',
         'price_from',
         'district',
-        'telephone'
+        'telephone',
+        'city',
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function cities(){
+        return $this->belongsTo(City::class, 'city', 'id');
+    }
+    public function districts(){
+        return $this->belongsTo(City::class, 'district', 'id');
+    }
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class,'id','hotel_id');
     }
 }
 

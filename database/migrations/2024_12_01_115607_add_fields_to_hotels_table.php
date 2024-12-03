@@ -54,7 +54,8 @@ return new class extends Migration
             $table->boolean('comfort_tv_cable')->default(0)->nullable();
             $table->boolean('deluxe_reception_facility')->default(0)->nullable();
             $table->string('zip_code')->nullable();
-            $table->string('district')->nullable();
+            $table->integer('district')->nullable();
+            $table->integer('city')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->string('luxury_telephone')->nullable();
             $table->boolean('luxury_tv_cable')->default(0)->nullable();

@@ -5,15 +5,21 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('homepage') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
+                @if (Auth::user()->user_type == 'hotel')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('pending')" :active="request()->routeIs('pending')">
+                        {{ __('Pending') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                        {{ __('History') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -21,6 +27,20 @@
                         {{ __('Profile') }}
                     </x-nav-link>
                 </div>
+
+                @else
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cus.pending')" :active="request()->routeIs('cus.pending')">
+                        {{ __('Pending') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cus.history')" :active="request()->routeIs('cus.history')">
+                        {{ __('Booked') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -74,11 +94,34 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @if(Auth::user()->user_type == 'hotel')
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('pending')" :active="request()->routeIs('pending')">
+                {{ __('Pending') }}
             </x-responsive-nav-link>
         </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                {{ __('History') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('profileh')" :active="request()->routeIs('profileh')">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
+        </div>
+        @else
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('profileh')" :active="request()->routeIs('profileh')">
+                {{ __('Pending') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('profileh')" :active="request()->routeIs('profileh')">
+                {{ __('Booked') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
