@@ -1,13 +1,11 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Booking</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <!--Template style -->
     <!--Fav icon-->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+
     <!-- datepikar plugin -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
     <!--animate css-->
@@ -24,31 +22,30 @@
     <!-- custom css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!--favicon-->
 
 </head>
 
 <body>
-
     <!-- return-to-top start-->
     <a href="javascript:" id="return-to-top"><i class="fas fa-sort-up"></i></a>
     <!-- return-to-top-end -->
     <!-- HEADER START-->
-    <div class="main_wrapper">
+    <div class="main_wrapper sign-up-header">
 
-        <div class="main_menu_wrapper">
+        <div class="main_menu_wrapper header-color">
             <!-- main_menu_navbar start -->
-            <div class="main_menu_navbar">
+            <div class="main_menu_navbar ">
                 <div class="ps-5 pe-5">
                     <div class="row justify-content-between">
-                        <div class="col-xl-4 col-lg-2 col-6 col align-self-center">
+                        <div class="col-xl-4 col-lg-2 col-6 align-self-center">
                             <!-- Brand/logo -->
-                            <a class="navbar-brand" href="#">
-                                <img src="images/logo.png" alt="">
+                            <a class="navbar-brand" href="index-01.html">
+                                <img src="images/f-logo-.png" alt="">
                             </a>
                         </div>
-                        <div class="align-self-center col-xl-3 col-lg-2 col-6 d-block d-lg-none"
-                            style="border-top-style: solid;border-top-width: 0px;margin-top: -12px;">
+                        <div class="col-xl-3 col-lg-2 col-6 d-block d-lg-none">
                             <div class="navbar-toggler" data-toggle="collapse" role="term" data-target="#sidebar"
                                 aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                                 <!--just add these span here-->
@@ -80,10 +77,10 @@
                                     @guest
 
                                         <li class="nav-item">
-                                            <a href="login" class="btn btn-outline-dark">Login</a>
+                                            <a href="{{route('login')}}" class="btn btn-primary">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="register" class="btn btn-outline-dark">Register</a>
+                                            <a href="{{route('register')}}" class="btn btn-primary">Register</a>
                                         </li>
                                     @endguest
                                     @auth
@@ -117,30 +114,11 @@
 
                         </div>
                     </div>
-
-                </div>
-            </div>
-            <!-- main_menu_navbar end -->
-            <!-- sb main header End -->
-            <!-- sb banner content Start -->
-            <div class="sb_banner_content_wrapper animated-row float_left">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 align-self-center">
-                            <div class="sb_banner_cont_iner_wrapper float_left">
-                                <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3>
-
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- mobile_menu_main start -->
-
 
         <!-- mobile_menu_main end -->
 
@@ -189,57 +167,68 @@
     <!-- sidebar end -->
 
     <!--HEADER END-->
-    <!-- Side Panel -->
-    <!-- hotel service section start -->
+    <!-- sign up banner start-->
+@yield('content')
 
-    <!-- hotel service section start end-->
-    <!-- popular hotel slider start -->
-
-    <div class="container">
-        <div class="row">
-            <h3 class="pt-5">Latest Hotels</h3>
-            @isset($hotels)
-
-                @foreach ($hotels as $hotel)
-                    <div class="col-xl-4 col-lg-6 pt-4 col-md-6 col-sm-12 col-12">
-                        <div class="sub-main">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
-                                </div>
-                                <span>Rs {{ $hotel->price_from }} / Night</span>
-                                <a href="javascript:;"> <img style="width: 351px; height: 275px"
-                                        src="{{ asset($hotel->thumbnail) }}" alt=""></a>
-                            </div>
-                            <div class="slider-content">
-                                <h5><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->title }}</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $hotel->address }}, {{ $hotel->zip_code }}, {{ $hotel->district }}</span></a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
-        </div>
-    </div>
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
         <div class="d-flex justify-content-center">
             <p>Copyright ©  </p>
         </div>
     </footer>
-    <!-- footer end -->
 
+    @if ($errors->any())
+        <script>
+            let erroList = '';
+            @foreach ($errors->all() as $error)
+                erroList += '{{ $error }}<br>';
+            @endforeach
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    html: erroList,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
 
-    <!-- custom js-->
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: "Error",
+                    text: '{{ session('error') }}',
+                    icon: "error",
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
 
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/shortcode.js"></script>
-    <script src="js/custom.js"></script>
-
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: "Successfully Added!",
+                    // text: "Item Added Succesfully!",
+                    icon: "success",
+                    confirmButtonColor: '#9FCED3',
+                });
+            });
+        </script>
+    @endif
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('js/shortcode.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

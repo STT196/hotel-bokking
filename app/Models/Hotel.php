@@ -72,7 +72,9 @@ class Hotel extends Model
         'description',
         'type',
         'status',
-        'price_from'
+        'price_from',
+        'district',
+        'telephone'
     ];
 
     public function user(){

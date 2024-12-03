@@ -2,7 +2,6 @@
 /node_modules
 /public/build
 /public/hot
-/public/thumbnail
 /public/storage
 /storage/*.key
 /storage/pail
@@ -22,3 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/public/crn
+/public/deluxe_room_image
+/public/luxury_room_image
+/public/thumbnail

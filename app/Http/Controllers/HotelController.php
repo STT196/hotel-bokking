@@ -58,6 +58,7 @@ class HotelController extends Controller
             'luxury_room_name' => 'nullable|string|max:255',
             'room_type' => 'nullable|string|max:255',
             'type' => 'nullable|numeric',
+            'telephone' => 'required|numeric|max:10',
             'address' => 'nullable|string|max:500',
             'longitude' => 'nullable|numeric',
             'good_interior' => 'nullable|boolean',
@@ -80,6 +81,7 @@ class HotelController extends Controller
             'title' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
             'breakfast' => 'nullable|boolean',
+            'district' => 'nullable|string|max:50',
         ]);
 
         // Save data to the database

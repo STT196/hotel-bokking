@@ -12,9 +12,9 @@ Route::get('/test', function () {
 })->name('test');
 
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// })->name('welcome');
 
 Route::get('/hotels', function () {
     return view('hotels');
@@ -32,7 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
 });
-Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
+
+Route::get('/hotel/{hotel}', [WebController::class, 'show'])->name('hotel.show');
 
 require __DIR__.'/auth.php';

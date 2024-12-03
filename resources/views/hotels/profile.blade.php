@@ -264,7 +264,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <label>Twitter</label>
+                                            <label>X</label>
                                             <div class="search_filte select-fields">
                                                 <input type="text" name="twitter"
                                                     placeholder="Enter your Twitter URL">
@@ -383,6 +383,11 @@
                                             <input type="text" id="name" name="name"
                                                 placeholder="Enter your name" required>
                                         </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <label class="no_margine" for="name">Telephone</label>
+                                            <input type="text" id="telephone" name="telephone"
+                                                placeholder="Enter your Telephone number" required>
+                                        </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                             <label for="email">Email Id</label>
@@ -397,16 +402,7 @@
                                 <h3>Location &amp; map</h3>
                                 <div class="fields">
                                     <div class="row">
-                                        {{-- <div class="col-md-6 col-12">
-                                            <label class="no_margine">map</label>
-                                            <div class="">
-                                                <x-maps-leaflet id="mapWrapper" style="width: 100%; height: 400px;" :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-leaflet>
 
-
-
-                                                <div id="map"></div>
-                                            </div>
-                                        </div> --}}
                                         <div class="col-md-6 col-12">
                                             <div class="row">
                                                 <div class="col-12">
@@ -428,14 +424,11 @@
                                                     <input type="text" name="latitude" id="latitude" placeholder="">
 
                                                 </div>
-                                                <div class="col-lg-6 col-md-12 col-12">
 
-                                                    <a href="#" id="checkLink">Check</a>
-                                                </div>
                                                 <div class="col-12">
                                                     <label>District</label>
                                                     <div class="search_filter select-fields">
-                                                        <select class="select-box">
+                                                        <select class="select-box" name="district">
                                                             <option value="" selected="selected">Select location
                                                             </option>
                                                             <option value="Colombo">Colombo</option>
