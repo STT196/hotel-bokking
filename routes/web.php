@@ -34,11 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/customer/recipet/{booking}', [CustomerController::class, 'recipet'])->name('cus.recipet')->middleware('customer');
 
 });
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     // Route::get('/users', [AdminController::class, 'history'])->name('cus.history');
-    Route::get('/approve/{booking}', [AdminController::class, 'aprrove'])->name('admin.approve')->middleware('admin');
-    Route::get('/decline/{booking}', [AdminController::class, 'decline'])->name('admin.decline')->middleware('admin');
+    Route::get('/approve/{booking}', [AdminController::class, 'aprrove'])->name('admin.approve');
+    Route::get('/decline/{booking}', [AdminController::class, 'decline'])->name('admin.decline');
     Route::get('/manage', [AdminController::class, 'manage'])->name('manage');
 
 });
