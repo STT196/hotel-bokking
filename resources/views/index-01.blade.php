@@ -7,7 +7,7 @@
 
     <!--Template style -->
     <!--Fav icon-->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+    {{-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}"> --}}
     <!-- datepikar plugin -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
     <!--animate css-->
@@ -110,7 +110,7 @@
                                             @endif
                                             <li>
                                                 <form action="{{ route('logout') }}" method="POST">
-
+                                                    @csrf
                                                     <button type="submit" class="btn btn-outline">Logout</button>
                                                 </form>
                                             </li>
@@ -176,7 +176,7 @@
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
-
+                            @csrf
                             <button type="submit" class="btn btn-outline ps-3"> Logout</button>
                         </form>
                     </li>

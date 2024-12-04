@@ -6,23 +6,33 @@
     <!--Template style -->
     <!--Fav icon-->
 
-    <!-- datepikar plugin -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
-    <!--animate css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}" />
-    <!--bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-    <!--fonts css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
-    <!--font-awesome css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}" />
-    <!-- carousal css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.min.css') }}">
-    <!-- custom css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" />
+       <!--Fav icon-->
+       {{-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}"> --}}
+       <!-- datepikar plugin -->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
+       <!--animate css-->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}" />
+       <!--bootstrap css-->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+       <!--fonts css-->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
+       <!--font-awesome css-->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}" />
+       <!-- carousal css -->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.min.css') }}">
+
+
+       <!-- custom css-->
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/shortcode.css') }}" />
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+       <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" />
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+
     <!--favicon-->
 
 </head>
@@ -107,7 +117,7 @@
                                             @endif
                                             <li>
                                                 <form action="{{ route('logout') }}" method="POST">
-
+                                                    @csrf
                                                     <button type="submit" class="btn btn-outline">Logout</button>
                                                 </form>
                                             </li>
@@ -154,7 +164,7 @@
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
-
+                                @csrf
                                 <button type="submit" class="btn btn-outline ps-3"> Logout</button>
                             </form>
                         </li>
@@ -233,6 +243,16 @@
             });
         </script>
     @endif
+    {{-- <script src="js/jquery-3.6.0.min.js"></script> --}}
+    {{-- <script src="js/jquery-ui.js"></script> --}}
+    {{-- <script src="js/bootstrap.min.js"></script> --}}
+    {{-- <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/shortcode.js"></script>
+    <script src="js/custom.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -242,6 +262,12 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+
+
 </body>
 
 </html>

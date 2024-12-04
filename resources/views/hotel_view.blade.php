@@ -5,21 +5,21 @@
         <div class="owl-carousel owl-theme p-rel">
             <div class="item">
                 <div>
-                    <img style="width:415px; height: 736px " src="{{ asset($details->crn_photo) }}" alt="">
+                    <img style="width: 415px; height: 736px;" src="{{ asset($details->crn_photo) }}" alt="CRN Room Photo">
                 </div>
             </div>
             <div class="item">
                 <div>
-                    <img style="width: 505; height: 738" src="{{ asset($details->luxury_room_image) }}" alt="">
+                    <img style="width: 505px; height: 738px;" src="{{ asset($details->luxury_room_image) }}" alt="Luxury Room">
                 </div>
             </div>
             <div class="item">
                 <div>
-                    <img style="width: 452; height: 725" src="{{ asset($details->deluxe_room_image) }}" alt="">
+                    <img style="width: 452px; height: 725px;" src="{{ asset($details->deluxe_room_image) }}" alt="Deluxe Room">
                 </div>
             </div>
         </div>
-    </div>
+
     <div class="hs-blog-wrapper">
         <div class="container">
             <div class="row">

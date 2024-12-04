@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\BookingMiddleware;
+use App\Http\Middleware\CustomerMiddleware;
 use App\Http\Middleware\HotelMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,7 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias(
             [
                 'booking' => BookingMiddleware::class,
-                'hotel' => HotelMiddleware::class
+                'hotel' => HotelMiddleware::class,
+                'customer' => CustomerMiddleware::class,
             ]
             );
     })

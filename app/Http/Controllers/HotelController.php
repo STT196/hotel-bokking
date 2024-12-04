@@ -18,9 +18,11 @@ class HotelController extends Controller
      */
 
      public function hotelsDashboard(){
-        $new_request = Reservation::with('hotel')->whereHas('hotel', function($query) {
+        $new_request = Reservation::with('hotel')
+        ->whereHas('hotel', function($query) {
             $query->where('user_id', Auth::user()->id);
-        })->where('status',0)->get();
+        })
+        ->where('status',0)->get();
         // dd($new_request);
         return view('hotels.pending',compact('new_request'));
     }

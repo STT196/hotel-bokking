@@ -6,6 +6,7 @@ use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use App\Models\District;
 
 class WebController extends Controller
 {
@@ -16,7 +17,13 @@ class WebController extends Controller
         return view('index-01',compact('hotels'));
     }
 
+    public function hotels(){
+        $hotels = Hotel::with('districts:id,name_en','cities:id,name_en')->select(['id','title','district','city','address','zip_code','thumbnail','price_from'])->paginate(1);
+        // dd($hotels);
 
+        $districts = District::with('city')->get();
+        return view('hotels',compact('hotels','districts'));
+    }
 
     public function show($hotel)
     {

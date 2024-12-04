@@ -17,22 +17,21 @@ Route::get('/test', function () {
 //     return view('welcome');
 // })->name('welcome');
 
-Route::get('/hotels', function () {
-    return view('hotels');
-})->name('hotels');
+Route::get('/hotels', [WebController::class, 'hotels'])->name('hotels');
 
-Route::middleware(['auth', 'verified','hotel'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/pending', [HotelController::class, 'hotelsDashboard'])->name('pending');
     Route::get('/history', [HotelController::class, 'history'])->name('history');
-    Route::get('/approve/{booking}', [HotelController::class, 'aprrove'])->name('approve');
-    Route::get('/decline/{booking}', [HotelController::class, 'decline'])->name('decline');
+    Route::get('/approve/{booking}', [HotelController::class, 'aprrove'])->name('approve')->middleware('hotel');
+    Route::get('/decline/{booking}', [HotelController::class, 'decline'])->name('decline')->middleware('hotel');
     Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.create');
     Route::get('/profileh', [HotelController::class, 'view'])->name('profileh');
 });
-Route::middleware(['auth', 'verified','hotel'])->group(function () {
-
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/customer/pending', [CustomerController::class, 'pending'])->name('cus.pending');
     Route::get('/customer/history', [CustomerController::class, 'history'])->name('cus.history');
+    Route::get('/customer/recipet/{booking}', [CustomerController::class, 'recipet'])->name('cus.recipet')->middleware('customer');
+
 });
 
 

@@ -1,9 +1,9 @@
 (function ($) {
     "use strict";
-    
-	 // Preloader 
-   
-	// fix header 
+
+	 // Preloader
+
+	// fix header
 
 
     var listingApp = {
@@ -19,7 +19,7 @@
             if( selectField.length ) {
                 tail.select("select.form-control");
             }
-        }, 
+        },
         /* ---------------------------------------------
          function initializ
          --------------------------------------------- */
@@ -94,8 +94,9 @@ function googleMap() {
         [ pt_center.lat() + 0.0055, pt_center.lng() - 0.0007 ],
         [ pt_center.lat() + 0.0055, pt_center.lng() + 0.0007 ]
     ];
-    let hotel_package = 
-                    '<div class="sub-main"><div class="img-sec p-rel"><div class="hover-img p-rel"><a href="javascript:;"> <img src="images/blog-3.jpg" alt=""></a></div><span>$77 / Night</span></div><div class="slider-content"><span><a href="javascript:;"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> &nbsp;|&nbsp; 88+ Review</a></span><h5><a href="hotel-single-page.html">Montage Kapalua</a></h5><a href="javascript:;"><span class="clr-text"><i class="fas fa-map-marker-alt"></i>Republic of Cuba, USA</span></a> </div></div>'
+    let hotel_package =
+                    '<div class="sub-main"><div class="img-sec p-rel"><div class="hover-img p-rel"><a href="javascript:;"> <img style="width: 254px; height: 199px" src="images/blog-1.jpg" alt=""></a></div><span>$67 / Night</span></div><div class="slider-content"><h5><a href="hotel-single-page.html">hotel sayaji indore</a></h5><a href="javascript:;"><span class="clr-text"><i class="fas fa-map-marker-alt"></i> Republic of Cuba, USA</span></a></div></div>'
+
 
     let infowindow = new google.maps.InfoWindow({
         content: hotel_package,
@@ -123,7 +124,7 @@ function googleMap() {
         });
 
         google.maps.event.addListener(infowindow, 'domready', function() {
-            
+
             var iwOuter = jQuery('.gm-style-iw');
 
             var iwBackground = iwOuter.prev();

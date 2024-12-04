@@ -503,13 +503,13 @@
                             {
                                 "cityName": "{{ $city->name_en }}",
                                 "cityId": "{{ $city->id }}"
-                            },
+                            }
+                            @if (!$loop->last), @endif
                         @endforeach
                     ]
                 },
             @endforeach
         ];
-        // console.log("🚀 ~ $district:", cities)
 
         $(document).ready(function() {
 
@@ -518,12 +518,14 @@
             cities.forEach((elem) => {
                 districtOptions += `<option value="${elem.districtId}">${elem.districtName}</option>`;
             });
-            // console.log("🚀 ~ $ ~ districtOptions:", $('#district'))
 
-            $('#district').html(districtOptions); // Initialize Select2 on the district dropdown
+            $('#district').html(districtOptions); // Populate the district dropdown
             $('#district').select2(); // Initialize Select2 on the district dropdown
-            $('#city').select2(); // Initialize Select2 on the city dropdown
 
+            // Initialize Select2 on the city dropdown (disabled by default)
+            $('#city').select2().prop("disabled", true);
+
+            // Handle district selection change
             $('#district').change(function() {
                 const selectedDistrict = cities.find((elem) => elem.districtId == $(this).val());
 
@@ -533,14 +535,16 @@
                         cityOptions += `<option value="${city.cityId}">${city.cityName}</option>`;
                     });
 
+                    // Populate and enable the city dropdown
                     $('#city').html(cityOptions).prop("disabled", false).removeClass('disabled').select2();
                 } else {
-                    $('#city').html('<option value="">Select City</option>').prop("disabled", true)
-                        .addClass('disabled');
+                    // Reset city dropdown if no district is selected
+                    $('#city').html('<option value="">Select City</option>').prop("disabled", true).addClass('disabled');
                 }
             });
         });
     </script>
+
 
 
     @if ($errors->any())
