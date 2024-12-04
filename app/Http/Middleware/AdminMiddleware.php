@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Hotel;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class BookingMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,14 +16,10 @@ class BookingMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $temp=Hotel::find($request->hotel_id)->user_id;
-        // $auth=Auth::user()->id;
-        // dd($temp,$auth);
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->user_type === 'admin') {
+
             return $next($request);
         }
-
-            return redirect()->back()->with('error', 'Please login first');
-
+        abort(403);
     }
 }

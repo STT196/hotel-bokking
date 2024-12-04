@@ -100,9 +100,16 @@
                                                         <button type="submit" class="btn btn-outline">Dashboard</button>
                                                     </form>
                                                 </li>
-                                            @else
+                                            @elseif (Auth::user()->user_type === 'hotel')
                                                 <li>
                                                     <form action="{{ route('pending') }}" method="GET">
+
+                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
+                                                    </form>
+                                                </li>
+                                                @else
+                                                <li>
+                                                    <form action="{{ route('dashboard') }}" method="GET">
 
                                                         <button type="submit" class="btn btn-outline">Dashboard</button>
                                                     </form>
@@ -133,8 +140,7 @@
                     <div class="row">
                         <div class="col-lg-12 align-self-center">
                             <div class="sb_banner_cont_iner_wrapper float_left">
-                                <h2>Book & Experience Amazing Places</h2>
-                                <h3>Compare 3000+ Hotels at once</h3>
+                                <h2>Find book and relax</h2>
 
 
                             </div>
@@ -166,8 +172,13 @@
 
                                 <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
                             </form>
-                        @else
+                        @elseif (Auth::user()->user_type == 'hotel')
                             <form action="{{ route('pending') }}" method="GET">
+
+                                <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
+                            </form>
+                            @else
+                            <form action="{{ route('dashboard') }}" method="GET">
 
                                 <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
                             </form>
@@ -226,7 +237,7 @@
                             <div class="slider-content">
                                 <h5><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->title }}</a></h5>
                                 <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                    {{ $hotel->address }}, {{ optional($hotel->cities)->name_en }}, {{ optional($hotel->districts)->name_en }}</span></a>
+                                    {{ $hotel->address }}, {{ $hotel->cities->name_en }}, {{ $hotel->cities->district->name_en }}</span></a>
                             </div>
                         </div>
                     </div>

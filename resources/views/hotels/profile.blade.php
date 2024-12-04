@@ -29,40 +29,15 @@
                                 <div class="fields">
                                     <div class="row">
                                         <div class="col-12">
-                                            <label class="no_margine">title</label>
+                                            <label class="no_margine">Hotel Name</label>
                                             <input type="text" name="title" placeholder="Enter your hotel name">
                                         </div>
                                         <div class="col-12">
                                             <label>Description</label>
                                             <textarea placeholder="" name="description"></textarea>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <label>type</label>
-                                            <div class="search_filte select-fields">
-                                                <select class="select-box" name="type">
-                                                    <option value="" selected="selected">Select a Type</option>
-                                                    <option value="1">1 star</option>
-                                                    <option value="2">2 star</option>
-                                                    <option value="3">3 star</option>
-                                                    <option value="4">4 star</option>
-                                                    <option value="5">5 star</option>
-                                                    <option value="7">7 star</option>
 
-                                                </select>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <label>Status</label>
-                                            <div class="search_filte select-fields">
-                                                <select class="select-box" name="status">
-                                                    <option value="" selected="selected">Select a Status</option>
-                                                    <option value="1">available</option>
-                                                    <option value="0">unavailable</option>
-                                                </select>
-
-                                            </div>
-                                        </div>
 
 
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
@@ -352,29 +327,7 @@
                                 </div>
 
                             </div>
-                            <div class="form_property">
-                                <h3>Pricing Plan</h3>
-                                <div class="fields">
-                                    <div class="row">
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio1" type="radio" class="radio-btn" name="room_type"
-                                                value="comfort_room">
-                                            <label for="radio1">Comfort Room</label>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio2" type="radio" class="radio-btn" name="room_type"
-                                                value="luxury_service">
-                                            <label for="radio2">Luxury Service</label>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <input id="radio3" type="radio" class="radio-btn" name="room_type"
-                                                value="deluxe_room">
-                                            <label for="radio3">Deluxe Room</label>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
                             <div class="form_property">
                                 <h3>Contact Information</h3>
                                 <div class="fields">

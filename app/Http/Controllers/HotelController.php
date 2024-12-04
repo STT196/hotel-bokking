@@ -45,15 +45,14 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         // Validate the input fields
-        if (Hotel::where('user_id', Auth::id())->exists()) {
-            return redirect()->back()->with('error', 'You have already created a profile.');
-        }
+        // if (Hotel::where('user_id', Auth::id())->exists()) {
+        //     return redirect()->back()->with('error', 'You have already created a profile.');
+        // }
 
         $validatedData = $request->validate([
             'security' => 'nullable|boolean',
             'deluxe_telephone' => 'nullable|string|max:255',
             'public_computer' => 'nullable|boolean',
-            'status' => 'nullable|boolean',
             'description' => 'nullable',
             'luxury_room_price' => 'nullable|numeric',
             'deluxe_room_name' => 'nullable|string|max:255',

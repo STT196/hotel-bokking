@@ -13,28 +13,28 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- datepikar plugin -->
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
     <!--animate css-->
-    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}" />
     <!--bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
     <!--fonts css-->
-    <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
     <!--font-awesome css-->
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- carousal css -->
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.min.css') }}">
     <!-- shortcode css -->
-    <link rel="stylesheet" type="text/css" href="css/shortcode.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/shortcode.css') }}">
       <!-- Select2 CSS -->
       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
       <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
 
     <!-- custom css-->
     {{-- <link rel="stylesheet" type="text/css" href="css/style.css" /> --}}
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" />
     {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/> --}}

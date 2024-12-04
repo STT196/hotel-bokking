@@ -3,6 +3,7 @@
 use App\Http\Middleware\BookingMiddleware;
 use App\Http\Middleware\CustomerMiddleware;
 use App\Http\Middleware\HotelMiddleware;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 'booking' => BookingMiddleware::class,
                 'hotel' => HotelMiddleware::class,
                 'customer' => CustomerMiddleware::class,
+                'admin' => AdminMiddleware::class,
             ]
             );
     })

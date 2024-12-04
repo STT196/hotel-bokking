@@ -1,85 +1,106 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Booking History ') }}
+            {{ __('Dashboard') }}
         </h2>
     </x-slot>
     <div class="py-12">
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
+
+
+                <div class="counterFour ptb-100">
+                    <div class="container text-center">
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <span class="icon-one"><i class="fa fa-user"></i></span>
+                                <h4><a href="#">Customers</a></h4>
+                                <div class="count-description">
+                                    <span class="timer">{{$customers}}</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <span class="icon-two"><i class="fa fa-hotel"></i></span>
+                                <h4><a href="#">Hotels</a></h4>
+                                <div class="count-description">
+                                    <span class="timer">{{$hotels_count}}</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <span class="icon-three"><i class="fa fa-check"></i></span>
+                                <h4><a href="#">Reservations</a></h4>
+                                <div class="count-description">
+                                    <span class="timer">{{$reservation}}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <span class="icon-three"><i class="fa fa-money"></i></i></span>
+                                <h4><a href="#">Transactions</a></h4>
+                                <div class="count-description">
+                                    <span class="timer">Rs {{$revenue}}</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container -->
+                </div>
                 <div style="overflow-y:auto;">
-                    @isset($new_request[0])
+
+                    @isset($hotels[0])
                         <table id="myTable">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-2">Invoice No</th>
                                     <th class="px-4 py-2">Name</th>
                                     <th class="px-4 py-2">Email</th>
                                     <th class="px-4 py-2">Phone</th>
-                                    <th class="px-4 py-2">Checkin</th>
-                                    <th class="px-4 py-2">Checkout</th>
-                                    <th class="px-4 py-2">Adults</th>
-                                    <th class="px-4 py-2">childs</th>
-                                    <th class="px-4 py-2">Room Type</th>
-                                    <th class="px-4 py-2">Status</th>
-                                    <th class="px-4 py-2">Ricpet</th>
+
+                                    <th class="px-4 py-2">Adress</th>
+                                    <th class="px-4 py-2">City</th>
+                                    <th class="px-4 py-2">District</th>
+                                    <th class="px-4 py-2">Preview</th>
+                                    <th class="px-4 py-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($new_request as $booking)
+                                @foreach ($hotels as $hotel)
                                     <tr>
-                                        <td class="border px-4 py-2">{{ $booking->id }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->name }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->email }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->tpnumber }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->start_date }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->end_date }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->adult_count }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->child_count }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->title }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->user->email }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->telephone }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->address }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->cities->name_en }}</td>
+                                        <td class="border px-4 py-2">{{ $hotel->cities->district->name_en }}</td>
+                                        <td class="border px-4 py-2">
+                                            <a href="{{ route('hotel.show', $hotel->id) }}" class="section3_btn btn2"
+                                                target="_blank">Preview</a>
+                                        </td>
 
-                                        <?php
-                                        $room = '';
-                                        switch ($booking->room_type) {
-                                            case 1:
-                                                $room = 'Comfort Room';
-                                                break;
-                                            case 2:
-                                                $room = 'Luxury Room';
-                                                break;
-                                            case 3:
-                                                $room = 'Deluxe Room';
-                                                break;
-                                        }
-                                        echo '<td class="border px-4 py-2">' . $room . '</td>';
-                                        ?>
-                                        <?php
-                                        $status = '';
-                                        switch ($booking->status) {
-                                            case 1:
-                                                $status = 'Aprroved';
-                                                break;
-                                            case 2:
-                                                $status = 'Declined';
-                                                break;
-                                        }
-                                        echo '<td class="border px-4 py-2">' . $status . '</td>';
-                                        ?>
-                                     <td class="border px-4 py-2 align-middle text-center">
-                                        <a href="{{ route('cus.recipet', $booking->id) }}" class="btn btn-success " target="_blank">
-                                            View
-                                        </a>
-                                        <div class="pb-3"></div>
-                                    </td>
+
+                                        <td class="border px-4 py-2 align-middle text-center">
+                                            <a href="{{ route('admin.approve', $hotel->id) }}" class="btn btn-success "
+                                                id="approve">Approve</a>
+                                            <div class="pb-3"></div>
+                                            <a href="{{ route('admin.decline', $hotel->id) }}" class="btn btn-danger "
+                                                id="decline">Decline</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     @else
-                        <p class="text-center">No new booking requests Yet.</p>
+                        <p class="text-center">No new Hotel requests Yet.</p>
                     @endisset
-
                 </div>
+
             </div>
         </div>
         <script>
@@ -98,7 +119,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = event.target
-                                .href; // Navigate to link href
+                                    .href; // Navigate to link href
                             }
                         });
                     });
@@ -121,7 +142,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = event.target
-                                .href; // Navigate to link href
+                                    .href; // Navigate to link href
                             }
                         });
                     });
@@ -168,8 +189,8 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     Swal.fire({
-                        title: "Successfully Added!",
-                        // text: "Item Added Succesfully!",
+                        title: "Successfull!",
+                        text: "{{ session('success') }}",
                         icon: "success",
                         confirmButtonColor: '#9FCED3',
                     });

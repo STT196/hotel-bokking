@@ -11,7 +11,7 @@
     <table class="w-full">
         <tr>
             <td class="w-half">
-                <img src="images/emal.png" alt="laravel daily" width="200" />
+                <img src="images/eml.png" alt="" width="200" />
             </td>
             <td class="w-half">
                 <h2>Invoice ID: {{ $data['invoice_id'] }}</h2>
@@ -46,7 +46,7 @@
                 <th >Checkin</th>
                 <th >Checkout</th>
                 <th >Days</th>
-                <th >Room Type</th>
+
                 <th>Price Per Day</th>
             </tr>
             <tr class="items">
@@ -69,9 +69,7 @@
                     <td>
                         {{ $data['days'] }}
                     </td>
-                    <td>
-                        {{ $data['room_type'] }}
-                    </td>
+
                     <td>
                         {{ $data['price'] }}
                     </td>

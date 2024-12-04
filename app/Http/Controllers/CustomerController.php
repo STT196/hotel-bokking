@@ -26,10 +26,11 @@ class CustomerController extends Controller
         // ->whereHas('user',function($query){
         //     $query->where('user_id',Auth::user()->id);
         // })
-        $new_request = Reservation::find($booking)->with('user','hotel')->where('status','=',1)->first();
+        $new_request = Reservation::find($booking)->with(['user','hotel'])->where('status','=',1)->first();
         if($new_request ==null){
             abort(404);
         }
+        // dd($new_request);
 
         $start_date = \Carbon\Carbon::parse($new_request->start_date);
         $end_date = \Carbon\Carbon::parse($new_request->end_date);

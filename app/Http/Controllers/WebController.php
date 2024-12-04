@@ -2,27 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\District;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends Controller
 {
     public function index()
     {
-        $hotels = Hotel::orderBy('created_at', 'desc')->with('districts:id,name_en','cities:id,name_en')->get(['id','title','district','city','address','zip_code','thumbnail','price_from'])->take(10);
+        $hotels = Hotel::Where('status', true)->orderBy('created_at', 'desc')->with(['cities.district'])->get(['id','title','city','address','zip_code','thumbnail','price_from'])->take(10);
+        // dd($hotels->toArray());
+        // $hotels = Hotel::with(['cities.district'])->first();
         // dd($hotels);
         return view('index-01',compact('hotels'));
     }
 
-    public function hotels(){
-        $hotels = Hotel::with('districts:id,name_en','cities:id,name_en')->select(['id','title','district','city','address','zip_code','thumbnail','price_from'])->paginate(1);
-        // dd($hotels);
+    public function search(Request $request){
+        $request->validate([
+            'min'=>'nullable|numeric',
+            'max'=>'nullable|numeric',
+        ]);
+        // dd($request->toArray());
+        $min = (float)$request->min;
+        $max = (float)$request->max;
+        $disId = $request->district;
+        $cisId = $request->city;
 
-        $districts = District::with('city')->get();
-        return view('hotels',compact('hotels','districts'));
+
+        $hotels = Hotel::where('status', true)->with('cities.district')
+        ->when($request->city, function ($query, $cityId) {
+            return $query->where('city', $cityId);
+        })
+        ->when($request->district, function ($query, $districtId) {
+            return $query->whereHas('cities', function ($query) use ($districtId) {
+                return $query->where('district_id', $districtId);
+            });
+        })
+        ->when($min, function ($query, $minPrice) {
+            return $query->where('price_from', '>=', $minPrice);
+        })
+        ->when($max, function ($query, $maxPrice) {
+            return $query->where('price_from', '<=', $maxPrice);
+        })
+        ->with(['cities.district'])
+        ->select(['id', 'title', 'district', 'city', 'address', 'zip_code', 'thumbnail', 'price_from'])
+        ->paginate(10);
+
+        // $districts = District::with('city')->get();
+        $cities = City::with('district')->get();
+
+        // dd($hotels->toArray());
+        return view('hotels', compact('hotels','cities'));
+    }
+
+    public function hotels(){
+        $hotels = Hotel::where('status', true)->with(['cities.district'])->select(['id','city','title','address','zip_code','thumbnail','price_from'])->paginate(10);
+        // dd($hotels->toArray());
+
+        $cities = City::with('district')->get();
+        return view('hotels',compact('hotels','cities'));
     }
 
     public function show($hotel)
