@@ -42,7 +42,7 @@
     <a href="javascript:" id="return-to-top"><i class="fas fa-sort-up"></i></a>
     <!-- return-to-top-end -->
     <!-- HEADER START-->
-    <div class="main_wrapper sign-up-header">
+    <div class="main_wrapper ">
 
         <div class="main_menu_wrapper header-color">
             <!-- main_menu_navbar start -->
@@ -51,8 +51,8 @@
                     <div class="row justify-content-between">
                         <div class="col-xl-4 col-lg-2 col-6 align-self-center">
                             <!-- Brand/logo -->
-                            <a class="navbar-brand" href="index-01.html">
-                                <img src="images/f-logo-.png" alt="">
+                            <a class="navbar-brand" href="{{route('homepage')}}">
+                                <img style="width: 100px; height: 100px" src="{{asset('images/f-logo-.png')}}" alt="">
                             </a>
                         </div>
                         <div class="col-xl-3 col-lg-2 col-6 d-block d-lg-none">
@@ -141,7 +141,7 @@
         <!-- sidebar start -->
         <div id="sidebar">
             <div class="sidebar_logo">
-                <a href="#"><img src="images/logo.png" alt=""></a>
+                <a href="#"><img style="width: 100px; height: 100px" src="images/logo.png" alt=""></a>
             </div>
             <div id='cssmenu'>
                 <ul>

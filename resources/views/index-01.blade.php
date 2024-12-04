@@ -44,7 +44,7 @@
                         <div class="col-xl-4 col-lg-2 col-6 col align-self-center">
                             <!-- Brand/logo -->
                             <a class="navbar-brand" href="#">
-                                <img src="images/logo.png" alt="">
+                                <img src="images/logo.png" style="width: 100px; height: 100px" alt="">
                             </a>
                         </div>
                         <div class="align-self-center col-xl-3 col-lg-2 col-6 d-block d-lg-none"
@@ -158,7 +158,7 @@
         <!-- sidebar start -->
         <div id="sidebar">
             <div class="sidebar_logo">
-                <a href="#"><img src="images/logo.png" alt=""></a>
+                <a href="#"><img style="width: 100px; height: 100px" src="images/logo.png" alt=""></a>
             </div>
             <div id='cssmenu'>
 
