@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/hotel/{hotel}', [WebController::class, 'show'])->name('hotel.show');
 Route::post('/reserve', [WebController::class, 'reserve'])->name('hotel.reserve')->middleware('booking');
-Route::post('/search', [WebController::class, 'search'])->name('search');
+Route::match(['get', 'post'],'/search', [WebController::class, 'search'])->name('search');
 
 
 require __DIR__.'/auth.php';

@@ -48,20 +48,19 @@ class WebController extends Controller
         ->when($max, function ($query, $maxPrice) {
             return $query->where('price_from', '<=', $maxPrice);
         })
-        ->with(['cities.district'])
         ->select(['id', 'title', 'district', 'city', 'address', 'zip_code', 'thumbnail', 'price_from'])
         ->paginate(10);
-
+        // ;
         // $districts = District::with('city')->get();
         $cities = City::with('district')->get();
 
-        // dd($hotels->toArray());
+        // dd($hotels);
         return view('hotels', compact('hotels','cities'));
     }
 
     public function hotels(){
-        $hotels = Hotel::where('status', true)->with(['cities.district'])->select(['id','city','title','address','zip_code','thumbnail','price_from'])->paginate(10);
-        // dd($hotels->toArray());
+        $hotels = Hotel::where('status', true)->with(['cities.district'])->select(['id','city', 'title', 'address', 'zip_code', 'thumbnail', 'price_from'])->paginate(10);
+        // dd($hotels);
 
         $cities = City::with('district')->get();
         return view('hotels',compact('hotels','cities'));
