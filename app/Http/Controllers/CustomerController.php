@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class CustomerController extends Controller
 {
     public function pending(){
-        $new_request = Reservation::with('user')->where('status','=',0)
+        $new_request = Reservation::with('user')->where('status','=',0)->where('user_id',Auth::user()->id)
         ->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('customer.pending',compact('new_request'));
     }
     public function history(){
-        $new_request = Reservation::with('user')->where('status','>',0)
+        $new_request = Reservation::with('user')->where('status','>',0)->where('user_id',Auth::user()->id)
         ->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('customer.history',compact('new_request'));
