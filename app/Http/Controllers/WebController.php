@@ -38,7 +38,7 @@ class WebController extends Controller
             return $query->where('city', $cityId);
         })
         ->when($request->district, function ($query, $districtId) {
-            return $query->whereHas('cities', function ($query) use ($districtId) {
+            return $query->whereHas('cities.district', function ($query) use ($districtId) {
                 return $query->where('district_id', $districtId);
             });
         })
