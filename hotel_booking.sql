@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 04, 2024 at 10:29 AM
+-- Generation Time: Dec 06, 2024 at 02:28 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sampletest`
+-- Database: `hotel_booking`
 --
 
 -- --------------------------------------------------------
@@ -29,11 +29,19 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `cache`;
 CREATE TABLE IF NOT EXISTS `cache` (
-  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('fivechamika@gmail.com|127.0.0.1:timer', 'i:1733395184;', 1733395184),
+('fivechamika@gmail.com|127.0.0.1', 'i:2;', 1733395184);
 
 -- --------------------------------------------------------
 
@@ -43,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `cache` (
 
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE IF NOT EXISTS `cache_locks` (
-  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2295,11 +2303,11 @@ INSERT INTO `districts` (`id`, `province_id`, `name_en`, `name_si`, `name_ta`) V
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -2317,13 +2325,13 @@ CREATE TABLE IF NOT EXISTS `hotels` (
   `user_id` int DEFAULT NULL,
   `city` int NOT NULL,
   `security` tinyint(1) DEFAULT '0',
-  `deluxe_telephone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deluxe_telephone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `public_computer` tinyint(1) DEFAULT '0',
   `status` tinyint(1) DEFAULT '0',
   `luxury_room_price` decimal(10,2) DEFAULT NULL,
-  `deluxe_room_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitter` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `comfort_telephone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deluxe_room_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comfort_telephone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `meeting_facilities` tinyint(1) DEFAULT '0',
   `comfort_ac_room` tinyint(1) DEFAULT '0',
   `luxury_outside_windows` tinyint(1) DEFAULT '0',
@@ -2331,55 +2339,91 @@ CREATE TABLE IF NOT EXISTS `hotels` (
   `crn_price` decimal(10,2) DEFAULT NULL,
   `price_from` decimal(10,2) DEFAULT NULL,
   `sunset_boat_trip` tinyint(1) DEFAULT '0',
-  `crn_photo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `thumbnail` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `crn_photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thumbnail` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `comfort_non_ac_room` tinyint(1) DEFAULT '0',
   `deluxe_outside_windows` tinyint(1) DEFAULT '0',
-  `pinterest` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pinterest` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gift_shop` tinyint(1) DEFAULT '0',
   `deluxe_ac_room` tinyint(1) DEFAULT '0',
-  `crn` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `crn` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `transport` tinyint(1) DEFAULT '0',
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `linkedin` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deluxe_room_price` decimal(10,2) DEFAULT NULL,
   `internet_access` tinyint(1) DEFAULT '0',
-  `facebook` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deluxe_tv_cable` tinyint(1) DEFAULT '0',
   `room_service` tinyint(1) DEFAULT '0',
-  `luxury_room_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `luxury_room_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `room_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `luxury_room_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `luxury_room_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `room_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district` int DEFAULT NULL,
   `longitude` decimal(10,8) DEFAULT NULL,
   `good_interior` tinyint(1) DEFAULT '0',
   `comfort_tv_cable` tinyint(1) DEFAULT '0',
   `deluxe_reception_facility` tinyint(1) DEFAULT '0',
-  `zip_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `latitude` decimal(10,8) DEFAULT NULL,
-  `luxury_telephone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `luxury_telephone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `luxury_tv_cable` tinyint(1) DEFAULT '0',
-  `deluxe_room_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deluxe_room_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `good_drinks` tinyint(1) DEFAULT '0',
-  `youtube_link` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `comfort_reception_facility` tinyint(1) DEFAULT '0',
-  `instagram` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `luxury_non_ac_room` tinyint(1) DEFAULT '0',
   `luxury_reception_facility` tinyint(1) DEFAULT '0',
   `telephone` int NOT NULL,
   `deluxe_non_ac_room` tinyint(1) DEFAULT '0',
   `swimming_pool` tinyint(1) DEFAULT '0',
   `comfort_outside_windows` tinyint(1) DEFAULT '0',
-  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` int DEFAULT NULL,
   `breakfast` tinyint(1) DEFAULT '0',
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `hotels`
+--
+
+INSERT INTO `hotels` (`id`, `user_id`, `city`, `security`, `deluxe_telephone`, `public_computer`, `status`, `luxury_room_price`, `deluxe_room_name`, `twitter`, `comfort_telephone`, `meeting_facilities`, `comfort_ac_room`, `luxury_outside_windows`, `luxury_ac_room`, `crn_price`, `price_from`, `sunset_boat_trip`, `crn_photo`, `thumbnail`, `comfort_non_ac_room`, `deluxe_outside_windows`, `pinterest`, `gift_shop`, `deluxe_ac_room`, `crn`, `transport`, `email`, `linkedin`, `deluxe_room_price`, `internet_access`, `facebook`, `deluxe_tv_cable`, `room_service`, `luxury_room_image`, `luxury_room_name`, `room_type`, `address`, `district`, `longitude`, `good_interior`, `comfort_tv_cable`, `deluxe_reception_facility`, `zip_code`, `latitude`, `luxury_telephone`, `luxury_tv_cable`, `deluxe_room_image`, `good_drinks`, `youtube_link`, `comfort_reception_facility`, `instagram`, `luxury_non_ac_room`, `luxury_reception_facility`, `telephone`, `deluxe_non_ac_room`, `swimming_pool`, `comfort_outside_windows`, `title`, `name`, `type`, `breakfast`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 88, 1, '1', 1, 1, 190.34, 'Deluxe Room', 'http://price.org/', '0', 1, 1, 0, 1, 115.30, 281.37, 1, 'R.jpeg', 'R.jpeg', 1, 0, 'https://rutherford.com/commodi-laboriosam-pariatur-quia-necessitatibus-odio.html', 0, 1, 'CRN123', 0, 'reynolds.jackeline@ferry.com', 'http://miller.com/', 152.56, 0, 'http://www.greenholt.com/aut-labore-quod-dolorum-recusandae.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '9403 Bernhard Brook Suite 089\nNew Lillaland, NY 76982-2904', 14, 33.63038600, 1, 1, 1, '13354-9425', 33.63038600, '0', 1, 'R.jpeg', 0, 'http://www.champlin.net/ut-eaque-ut-est-delectus-dignissimos', 0, 'http://www.schoen.biz/', 0, 1, 1234567890, 0, 0, 1, 'Turner-Wiza', 'Herzog, Bergnaum and Dach', 2, 1, 'Occaecati deserunt qui id doloremque. Doloremque temporibus velit perferendis autem mollitia. Omnis unde eum tempore rem. Tempore ut modi quidem harum unde.', '2024-12-05 14:05:26', '2024-12-05 14:05:26'),
+(2, 1, 36, 0, '0', 0, 1, 259.63, 'Deluxe Room', 'http://tromp.com/eligendi-nulla-laborum-consequatur-natus-repellendus.html', '1', 0, 1, 0, 1, 192.28, 260.88, 1, 'R.jpeg', 'R.jpeg', 1, 0, 'http://jacobson.com/ut-minus-sed-blanditiis-eaque-minima-consequatur-earum-aut.html', 1, 0, 'CRN123', 1, 'vzboncak@ratke.info', 'http://corwin.com/fuga-et-nemo-dolorem-pariatur-dolor-quidem-in-ipsa', 225.25, 0, 'http://brekke.com/nulla-est-culpa-consectetur-at-animi-rerum', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '32359 Candida Meadow\nWest Brandostad, DC 94447-2519', 8, 33.63038600, 1, 1, 0, '86988-9244', 33.63038600, '0', 0, 'R.jpeg', 1, 'http://thiel.com/tempore-laboriosam-et-odio', 0, 'http://abbott.net/', 0, 0, 1234567890, 0, 1, 0, 'Hodkiewicz LLC', 'Hills-Ortiz', 2, 1, 'Est consequuntur sequi nostrum eos quam dolor est. Delectus ut perferendis ut error neque optio. Rerum assumenda rerum dolorem doloremque incidunt error hic. Vel architecto quaerat eveniet quas ipsam consectetur tempora.', '2024-12-05 14:05:26', '2024-12-05 14:05:26'),
+(3, 1, 67, 1, '0', 1, 0, 296.91, 'Deluxe Room', 'http://schuster.biz/est-sit-vero-est-quibusdam-fuga-suscipit-inventore.html', '1', 1, 0, 0, 1, 197.62, 286.17, 1, 'R.jpeg', 'R.jpeg', 1, 1, 'http://jones.com/', 1, 1, 'CRN123', 1, 'enitzsche@hotmail.com', 'http://wolff.info/excepturi-ex-et-consectetur-ipsum-laboriosam-cumque', 244.44, 0, 'http://www.rosenbaum.com/enim-facilis-blanditiis-quo-at-reprehenderit-quis-est.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '9471 Alexie Isle Apt. 851\nPietroberg, WY 85767-8311', 2, 33.63038600, 1, 1, 0, '13291', 33.63038600, '0', 1, 'R.jpeg', 0, 'http://www.kshlerin.com/minus-ut-sunt-enim-quae-explicabo-doloremque-ratione-alias', 0, 'http://www.weber.biz/quia-provident-aut-pariatur.html', 0, 1, 1234567890, 1, 1, 1, 'Weissnat, Blanda and Hilpert', 'Okuneva, Gerhold and Miller', 3, 1, 'Quaerat consequuntur eligendi optio illum ea nesciunt. Voluptates recusandae dolorem natus culpa voluptatem et. Culpa quibusdam nihil pariatur quidem delectus sapiente assumenda. Sit atque amet rerum fugiat quae fugit.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(4, 1, 31, 1, '0', 1, 0, 159.66, 'Deluxe Room', 'http://glover.org/impedit-ad-quia-ad-placeat-voluptatem-eum-iure.html', '0', 0, 1, 0, 1, 157.23, 290.66, 0, 'R.jpeg', 'R.jpeg', 0, 1, 'http://rippin.org/odio-qui-quia-esse-quidem-rem-quidem-ipsum', 0, 0, 'CRN123', 0, 'boehm.brenda@hotmail.com', 'http://www.schmidt.com/et-ut-fugiat-nobis-fuga', 173.36, 1, 'http://www.labadie.com/doloribus-velit-explicabo-sunt-voluptatem-totam-vero-atque-asperiores.html', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '33884 Christa Prairie Suite 780\nKoeppview, NC 83394-6137', 19, 33.63038600, 0, 0, 0, '47976-4845', 33.63038600, '1', 1, 'R.jpeg', 1, 'https://www.douglas.info/dolorum-nulla-qui-eos-quo', 1, 'http://ondricka.com/quaerat-illo-magni-in-quidem-quis', 0, 1, 1234567890, 1, 1, 1, 'Labadie, Roberts and Johnson', 'Nicolas-Okuneva', 2, 1, 'Dolorem et et dolores. Veniam et maiores iure ullam labore aut reiciendis sunt.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(5, 1, 61, 1, '0', 0, 0, 226.29, 'Deluxe Room', 'http://orn.biz/rerum-voluptas-aut-dolore-voluptates-ad-et-aliquid', '0', 0, 0, 0, 1, 108.28, 160.86, 1, 'R.jpeg', 'R.jpeg', 1, 0, 'https://kunde.net/voluptas-perferendis-sunt-recusandae-sed-culpa-voluptatibus.html', 0, 0, 'CRN123', 0, 'genevieve12@yahoo.com', 'http://legros.com/amet-qui-reiciendis-quia-ratione', 216.17, 1, 'http://www.johnston.net/', 1, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '8718 Keeling Run\nWest Madonna, MN 76683', 18, 33.63038600, 1, 0, 0, '05314-9499', 33.63038600, '1', 0, 'R.jpeg', 1, 'https://www.reilly.info/ex-praesentium-exercitationem-aut-nisi-reiciendis', 0, 'http://hoeger.com/doloribus-cupiditate-soluta-quia-laboriosam-voluptatem-eos-qui', 1, 1, 1234567890, 0, 0, 0, 'Adams-Weimann', 'Brekke, Green and Schoen', 2, 0, 'Earum et molestiae qui error. Non odit non consequatur officiis rerum dolorem sint. Provident et sunt quis quasi accusantium unde. Eos recusandae dolore esse quia ut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(6, 1, 74, 1, '0', 0, 0, 225.56, 'Deluxe Room', 'http://www.pagac.com/', '0', 0, 0, 1, 0, 112.56, 234.58, 1, 'R.jpeg', 'R.jpeg', 1, 0, 'http://www.huels.biz/illo-eligendi-amet-voluptatem-magni', 0, 1, 'CRN123', 1, 'emely.strosin@gmail.com', 'http://mraz.biz/quos-voluptatem-et-vitae-officiis-magnam-voluptatibus-fugiat-magni.html', 202.28, 1, 'http://www.roberts.com/consequatur-aut-illum-laboriosam-et-temporibus-eos-dolores-ea', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '6680 Okuneva Creek\nBarneyberg, VA 25874-2302', 4, 33.63038600, 0, 1, 0, '41470', 33.63038600, '1', 0, 'R.jpeg', 1, 'https://www.denesik.org/sit-possimus-et-vitae-est', 1, 'http://senger.com/', 0, 1, 1234567890, 1, 0, 1, 'Wisozk, D\'Amore and Kessler', 'Dooley, Strosin and Fay', 2, 1, 'Est aperiam qui ex. Totam quia asperiores voluptatem dolores nemo laboriosam. Facilis omnis porro perferendis nesciunt non voluptatem aut. Reiciendis voluptatem in laudantium quos eos.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(7, 1, 45, 1, '1', 0, 0, 207.04, 'Deluxe Room', 'http://ledner.com/velit-sint-eos-perspiciatis-culpa', '0', 1, 1, 1, 1, 147.80, 175.87, 1, 'R.jpeg', 'R.jpeg', 0, 1, 'http://brown.com/non-a-ea-repudiandae-odit-nemo-distinctio-et-suscipit.html', 0, 1, 'CRN123', 1, 'zion11@gmail.com', 'http://www.walter.com/voluptate-numquam-non-ipsam-et-delectus-dicta', 236.66, 0, 'http://daniel.com/qui-et-ex-quas.html', 1, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '26856 O\'Conner Wells\nEast Christian, VT 49773-7028', 9, 33.63038600, 0, 1, 1, '22324', 33.63038600, '1', 1, 'R.jpeg', 1, 'http://www.pouros.com/', 0, 'http://nikolaus.com/sed-itaque-nam-fuga', 0, 1, 1234567890, 1, 1, 1, 'Block-Greenfelder', 'Hahn Ltd', 1, 0, 'Sed vitae laboriosam officiis ipsum unde. Ut suscipit fugit voluptatem nihil. Minus quos eligendi aut sapiente repudiandae dicta et corporis. Reiciendis voluptatum iste sequi et exercitationem qui et.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(8, 1, 68, 1, '1', 1, 1, 291.71, 'Deluxe Room', 'http://nolan.net/eum-et-odit-laborum-rerum-reiciendis-maiores-aperiam', '0', 1, 0, 1, 0, 130.40, 189.24, 0, 'R.jpeg', 'R.jpeg', 1, 0, 'http://stamm.biz/aut-id-perferendis-numquam-saepe-ut-illo-est-et.html', 0, 0, 'CRN123', 0, 'lstoltenberg@smitham.net', 'http://ward.com/consectetur-aut-corporis-neque', 281.10, 1, 'http://white.com/vitae-omnis-molestiae-voluptatem-necessitatibus', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '9375 McKenzie Trail Suite 096\nEast Ethel, NV 31729', 13, 33.63038600, 0, 0, 1, '66162-0371', 33.63038600, '0', 0, 'R.jpeg', 1, 'https://pacocha.biz/quis-repellendus-in-dignissimos-consequatur-vero-quidem-reiciendis-corrupti.html', 0, 'https://www.satterfield.com/ut-temporibus-eveniet-odio-voluptatem-quo-quia-explicabo', 1, 1, 1234567890, 0, 1, 1, 'Cassin LLC', 'Eichmann Group', 2, 1, 'Iste qui facilis aut aliquid ex quae voluptatibus. Eligendi quidem est eum. Vel labore omnis quod aut quibusdam ea. Aut et quasi est quas et.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(9, 1, 65, 1, '1', 1, 1, 205.02, 'Deluxe Room', 'http://schroeder.com/', '1', 1, 0, 0, 0, 175.87, 298.75, 0, 'R.jpeg', 'R.jpeg', 0, 1, 'http://rowe.biz/eaque-placeat-nulla-qui-odit-qui', 1, 0, 'CRN123', 1, 'gschaden@hotmail.com', 'http://frami.com/', 184.76, 1, 'http://bartell.net/optio-earum-quasi-illum', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '97645 Lily Falls Apt. 932\nNew Howell, KS 22750-0662', 8, 33.63038600, 0, 1, 0, '12102', 33.63038600, '0', 0, 'R.jpeg', 0, 'https://gerlach.com/quam-deserunt-aut-voluptates.html', 1, 'http://www.braun.com/', 0, 1, 1234567890, 0, 0, 1, 'Bins LLC', 'Waters, Beer and Marvin', 1, 0, 'Sint nemo numquam animi. Dolorem excepturi aut commodi quis fugiat aut totam laborum. Ut tenetur officia facere dolores aut qui laborum. Beatae dignissimos aspernatur ab vel nihil quas.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(10, 1, 83, 1, '1', 0, 1, 192.60, 'Deluxe Room', 'http://www.bahringer.net/commodi-ipsum-cupiditate-assumenda-facere-quidem-quasi', '0', 1, 0, 1, 1, 166.52, 223.63, 1, 'R.jpeg', 'R.jpeg', 0, 0, 'http://conn.com/voluptas-velit-iure-aspernatur-unde-eaque-adipisci-ut.html', 1, 0, 'CRN123', 0, 'jast.juanita@turcotte.com', 'http://www.nolan.com/sint-consectetur-magnam-porro-non-doloribus-amet', 220.45, 1, 'http://deckow.biz/enim-rerum-perferendis-corrupti-et', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '8842 Silas Island Suite 202\nNorth Anastacio, IA 92539', 5, 33.63038600, 1, 1, 1, '28207-4185', 33.63038600, '0', 0, 'R.jpeg', 0, 'http://www.wyman.com/praesentium-neque-perspiciatis-quod.html', 0, 'http://vandervort.info/enim-quisquam-ut-sit-facere-officiis-et', 1, 0, 1234567890, 0, 0, 0, 'Marks, Steuber and Hickle', 'Leannon-Sawayn', 3, 0, 'Qui quis odio est enim eum. Vero explicabo dolorem rerum est. Quam odit sint reprehenderit vitae. Atque velit consequatur eveniet eligendi autem dignissimos expedita.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(11, 1, 5, 1, '1', 1, 0, 157.83, 'Deluxe Room', 'http://klocko.com/magnam-non-qui-doloremque-ut-voluptas-eos-distinctio-ratione', '1', 0, 0, 1, 0, 144.60, 291.75, 0, 'R.jpeg', 'R.jpeg', 1, 1, 'http://kirlin.com/', 0, 0, 'CRN123', 1, 'theresa.gulgowski@rutherford.com', 'http://schneider.com/accusantium-quidem-aut-non-ut-sit', 157.81, 1, 'http://www.ward.com/quod-commodi-et-ea-rerum-quo-non-eos', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '7916 Rosanna Isle Apt. 717\nDestinystad, RI 66837', 9, 33.63038600, 1, 0, 1, '38835', 33.63038600, '1', 1, 'R.jpeg', 1, 'https://www.brakus.com/quia-ab-qui-tempora-necessitatibus-non', 1, 'http://parisian.org/officiis-aliquam-doloribus-quibusdam-omnis-nihil-ea', 0, 0, 1234567890, 1, 1, 1, 'Christiansen-Hermiston', 'Mills Group', 1, 1, 'Voluptatem dolores vel quo velit qui. Enim tenetur eum harum et sed quis. Et ea quisquam beatae adipisci repellat soluta iure fugit. Labore non quia velit mollitia aliquam est ut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(12, 1, 86, 0, '1', 1, 0, 162.58, 'Deluxe Room', 'http://dooley.com/', '1', 0, 1, 0, 0, 186.13, 173.44, 1, 'R.jpeg', 'R.jpeg', 1, 1, 'https://rodriguez.net/odit-ab-rerum-sed-neque-nisi.html', 0, 0, 'CRN123', 1, 'frank98@gmail.com', 'http://ortiz.net/impedit-vitae-beatae-sint-dolor', 284.35, 0, 'http://www.bailey.com/quidem-excepturi-amet-esse-sit-ex.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '992 Coby Center Suite 534\nKshlerinburgh, TX 14247-8600', 15, 33.63038600, 0, 1, 0, '73215-0249', 33.63038600, '1', 0, 'R.jpeg', 0, 'http://www.bins.org/ab-accusantium-pariatur-omnis-qui-dolor-totam-error-quaerat', 0, 'http://ohara.com/sed-sit-vel-error-in.html', 0, 1, 1234567890, 0, 0, 0, 'Turner-Gerhold', 'Bernhard, Moen and Bernier', 1, 1, 'Natus fugit itaque nihil voluptas ab voluptatem assumenda. Fuga corrupti aliquid nihil suscipit libero. Exercitationem quod recusandae ullam impedit. Esse inventore debitis placeat.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(13, 1, 63, 0, '0', 0, 0, 218.52, 'Deluxe Room', 'https://www.mohr.org/deserunt-ut-non-iste', '0', 1, 0, 1, 0, 142.03, 238.98, 1, 'R.jpeg', 'R.jpeg', 1, 1, 'http://labadie.com/optio-saepe-cum-ut-sit-et-ut-eius', 1, 0, 'CRN123', 0, 'jeffery50@hotmail.com', 'http://stokes.com/', 236.06, 1, 'http://okon.com/earum-sit-quis-doloribus-eum', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '74642 Mann Estate Apt. 543\nEast Horace, KY 26053-9840', 2, 33.63038600, 0, 0, 1, '63213', 33.63038600, '1', 0, 'R.jpeg', 1, 'http://www.johns.info/veniam-repudiandae-asperiores-minus-rerum', 1, 'http://www.thompson.com/sit-exercitationem-ut-suscipit-et-voluptas-qui', 1, 1, 1234567890, 0, 0, 0, 'Kuphal-Marvin', 'Turcotte and Sons', 1, 1, 'Natus nam eligendi voluptatem culpa eveniet sint ipsam dolorem. Aut unde alias velit possimus occaecati. Doloribus qui amet est hic nam. A saepe totam tempora nostrum mollitia sint aut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(14, 1, 21, 1, '0', 1, 1, 224.55, 'Deluxe Room', 'https://buckridge.org/minus-sapiente-aliquid-ut-vero-cum-eligendi-at-quae.html', '1', 0, 0, 1, 0, 152.90, 277.06, 1, 'R.jpeg', 'R.jpeg', 0, 1, 'http://hoppe.org/voluptas-aut-vel-est-officiis-error-sit-voluptatum-accusamus.html', 0, 0, 'CRN123', 0, 'von.juliana@gleichner.com', 'http://www.weissnat.com/impedit-laborum-repudiandae-cumque-aperiam-qui', 178.80, 1, 'http://gorczany.info/id-ipsam-voluptatem-modi-doloremque-similique-veniam-explicabo-quia', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '19722 Amber Extension Apt. 089\nRashadchester, AL 11803', 6, 33.63038600, 1, 1, 0, '80418-2207', 33.63038600, '1', 0, 'R.jpeg', 0, 'http://wiegand.com/deserunt-sunt-debitis-vel-consequatur-qui-eos-sequi', 0, 'http://gusikowski.com/voluptatem-ipsam-dicta-dolorum-rerum', 0, 1, 1234567890, 0, 1, 0, 'Hickle-Reinger', 'Hermiston PLC', 3, 1, 'Et similique numquam non repellat dicta et. Deserunt tenetur et et. Corporis quia totam unde quo ducimus saepe iusto.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(15, 1, 67, 1, '1', 0, 1, 250.21, 'Deluxe Room', 'https://www.bauch.com/dolor-repudiandae-hic-voluptas-sunt-optio-distinctio-ut', '1', 1, 0, 0, 1, 193.48, 191.14, 1, 'R.jpeg', 'R.jpeg', 0, 0, 'http://koepp.net/', 0, 1, 'CRN123', 1, 'erling.adams@greenfelder.com', 'https://luettgen.info/sit-eum-debitis-tenetur-est-harum.html', 299.29, 0, 'https://bradtke.com/incidunt-doloribus-perferendis-temporibus-doloribus.html', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '4353 Lamar Cove\nKilbackfort, OH 17235-1161', 12, 33.63038600, 1, 1, 0, '26602-9583', 33.63038600, '0', 1, 'R.jpeg', 0, 'http://www.wintheiser.org/', 0, 'http://kautzer.com/', 1, 1, 1234567890, 0, 0, 0, 'Murray Group', 'Feeney-Hodkiewicz', 3, 1, 'Exercitationem est et eius dignissimos blanditiis qui. Alias vel ut in quia odit ut eius. Rerum repellendus rerum occaecati aut dolore. Esse quos assumenda et commodi unde.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(16, 1, 10, 1, '1', 0, 0, 236.73, 'Deluxe Room', 'http://ebert.com/est-omnis-et-debitis-est.html', '1', 0, 0, 0, 0, 124.49, 200.93, 1, 'R.jpeg', 'R.jpeg', 0, 1, 'http://www.klocko.com/et-porro-qui-beatae-maxime-quia.html', 0, 1, 'CRN123', 0, 'imckenzie@reichel.com', 'http://www.koelpin.com/porro-soluta-eaque-ipsum', 193.38, 1, 'http://hessel.com/', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '714 Anderson Mills\nPort Biankaberg, KS 93991', 18, 33.63038600, 1, 0, 1, '51347', 33.63038600, '0', 0, 'R.jpeg', 1, 'http://moore.info/', 0, 'https://yundt.com/quibusdam-quod-ipsam-nihil-aut-nulla.html', 1, 1, 1234567890, 1, 1, 1, 'Welch Ltd', 'Armstrong-Bosco', 3, 1, 'Amet assumenda voluptas itaque quaerat quo. Voluptas minima ullam excepturi. Omnis veritatis at corporis ipsam sint et qui quo. Dolorem natus rem eos non suscipit.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(17, 1, 63, 1, '0', 1, 0, 177.71, 'Deluxe Room', 'http://williamson.com/voluptas-cum-sit-perspiciatis', '0', 0, 1, 1, 1, 148.15, 200.98, 1, 'R.jpeg', 'R.jpeg', 0, 0, 'https://simonis.com/sed-sint-voluptatum-quae-non-facere.html', 0, 0, 'CRN123', 0, 'rogahn.trevion@gmail.com', 'https://spinka.net/sit-voluptatibus-tenetur-ut.html', 237.37, 1, 'http://www.wunsch.net/sit-voluptatem-quidem-incidunt-sit-repudiandae-maxime-sapiente.html', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '33729 Dock Landing\nMayerhaven, WI 92248-6261', 6, 33.63038600, 0, 0, 0, '70434-5640', 33.63038600, '1', 1, 'R.jpeg', 0, 'http://www.kozey.com/', 1, 'http://wehner.com/', 0, 1, 1234567890, 1, 1, 1, 'Sporer-Goyette', 'Crona Group', 3, 1, 'Quasi tempore et illum dolore. Magnam ut perferendis rerum commodi quisquam est. Ad qui molestiae similique et aut ut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(18, 1, 76, 1, '1', 1, 0, 152.34, 'Deluxe Room', 'http://www.gusikowski.com/rerum-a-eos-est-eum', '1', 0, 1, 1, 1, 129.31, 239.92, 1, 'R.jpeg', 'R.jpeg', 0, 0, 'https://www.west.biz/est-deleniti-sed-ea-aspernatur', 1, 1, 'CRN123', 1, 'qboehm@gmail.com', 'http://www.nikolaus.com/omnis-nobis-unde-id-ipsa-soluta-velit', 204.37, 0, 'http://gleichner.net/autem-qui-qui-ullam-illum-nostrum.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '677 Amy Camp Apt. 235\nDuBuqueborough, NE 98269-3292', 15, 33.63038600, 0, 1, 1, '95437-7096', 33.63038600, '1', 0, 'R.jpeg', 1, 'https://www.balistreri.com/corrupti-id-ut-numquam-aliquid-veritatis-explicabo-eligendi-pariatur', 0, 'http://romaguera.net/', 1, 1, 1234567890, 0, 1, 0, 'Baumbach PLC', 'Jast-Huels', 2, 0, 'Rerum totam et neque. Laboriosam corporis nobis saepe nostrum. Voluptatibus doloremque dolorem quis. Et fuga autem mollitia itaque minima soluta maiores.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(19, 1, 92, 0, '1', 0, 1, 230.26, 'Deluxe Room', 'https://www.baumbach.info/sed-et-natus-possimus-mollitia-iste', '0', 1, 1, 1, 0, 113.26, 264.97, 1, 'R.jpeg', 'R.jpeg', 1, 1, 'http://kerluke.com/voluptatem-et-saepe-tenetur-atque', 1, 1, 'CRN123', 0, 'walter.abbey@gmail.com', 'http://cronin.com/', 190.60, 0, 'http://ratke.com/praesentium-saepe-vel-ipsa.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '9653 Helga Roads\nNorth Altaport, MI 24360-0647', 12, 33.63038600, 1, 0, 0, '80761', 33.63038600, '0', 1, 'R.jpeg', 0, 'https://www.bergnaum.net/dolorem-iure-quo-sit-laudantium-perspiciatis-cumque', 0, 'http://www.strosin.net/qui-est-asperiores-animi-et', 1, 1, 1234567890, 1, 0, 0, 'Reichert, Rogahn and Price', 'Leannon Ltd', 3, 1, 'Quos commodi inventore expedita consequatur veritatis est provident. Enim debitis sint facilis nobis.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(20, 1, 44, 1, '1', 0, 0, 205.37, 'Deluxe Room', 'http://monahan.info/nihil-velit-fugiat-est-cumque-quos-voluptatem-est-in', '1', 0, 1, 1, 0, 101.98, 232.62, 0, 'R.jpeg', 'R.jpeg', 1, 0, 'http://kozey.com/', 1, 1, 'CRN123', 0, 'raynor.gregg@hotmail.com', 'http://mitchell.com/', 237.93, 0, 'http://www.lueilwitz.com/', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '77770 Gerlach Ports Apt. 366\nLake Cielofurt, SC 59028', 5, 33.63038600, 0, 1, 1, '31052', 33.63038600, '1', 0, 'R.jpeg', 1, 'http://www.hettinger.com/eveniet-ut-iste-sed-ut-cumque-ut-sed-quae.html', 0, 'http://www.williamson.info/', 0, 1, 1234567890, 1, 1, 0, 'Hamill Group', 'Corwin-Weber', 2, 1, 'Voluptates autem sapiente a est omnis rem. Consequatur animi dolor qui sit accusamus ipsum deleniti. Maiores eos dignissimos corrupti alias ex minima. Non voluptatem eius sint tempora qui.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(21, 1, 78, 0, '0', 1, 0, 235.03, 'Deluxe Room', 'http://www.stark.net/', '1', 1, 0, 1, 0, 146.47, 286.70, 0, 'R.jpeg', 'R.jpeg', 0, 0, 'http://mosciski.com/et-ut-at-sed-delectus-totam', 0, 0, 'CRN123', 1, 'kristofer.marvin@littel.biz', 'https://ernser.com/enim-adipisci-eos-harum-laudantium-saepe-cumque-eveniet.html', 212.68, 1, 'http://www.mcclure.com/nisi-eum-odit-aperiam-veniam-non.html', 1, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '1239 Rosenbaum Wells\nNorth Johnsonchester, ND 25794', 13, 33.63038600, 1, 0, 1, '20922', 33.63038600, '0', 0, 'R.jpeg', 0, 'https://www.strosin.com/corrupti-id-adipisci-exercitationem-reprehenderit-ab-culpa-culpa', 1, 'http://smith.com/ipsam-voluptates-ipsum-ab-aut-ratione.html', 1, 0, 1234567890, 0, 0, 0, 'Nolan PLC', 'White and Sons', 2, 1, 'Vitae quia quam consequatur. Recusandae ex cumque voluptates qui officia repudiandae. Qui consequatur officiis ducimus ea quod.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(22, 1, 50, 0, '1', 1, 1, 239.07, 'Deluxe Room', 'http://www.stracke.com/', '0', 1, 1, 1, 0, 127.11, 246.58, 0, 'R.jpeg', 'R.jpeg', 1, 0, 'http://beahan.com/', 0, 0, 'CRN123', 0, 'kryan@monahan.net', 'http://nicolas.biz/ipsa-voluptatem-quia-sunt-voluptas', 242.27, 1, 'http://crona.com/eum-perferendis-earum-recusandae-voluptas.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '1890 Schumm Village Apt. 184\nWest Yasmeenview, MA 18270', 18, 33.63038600, 0, 1, 0, '77616', 33.63038600, '0', 0, 'R.jpeg', 0, 'http://brekke.net/', 0, 'http://www.kunde.biz/amet-esse-sit-placeat-dignissimos-accusamus-fugiat-aperiam', 1, 0, 1234567890, 1, 0, 0, 'Ernser-Prosacco', 'Connelly Group', 2, 1, 'Omnis molestiae sapiente ducimus cum. Sapiente libero repellat quas quos voluptatem quia. Repudiandae ut numquam veniam aut sit consequatur sed error.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(23, 1, 60, 1, '0', 1, 0, 205.44, 'Deluxe Room', 'http://www.ratke.biz/non-est-animi-nihil-et-explicabo-aut-excepturi-tenetur', '1', 1, 1, 0, 0, 100.65, 249.09, 0, 'R.jpeg', 'R.jpeg', 1, 1, 'http://ratke.com/', 1, 0, 'CRN123', 0, 'brandi27@bogisich.biz', 'https://www.hermann.org/ut-enim-fugiat-quae-sint-ratione', 211.56, 1, 'http://www.wintheiser.info/laboriosam-quae-nobis-molestias-beatae', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '35748 Assunta Ridge\nEast Margarete, FL 01559-8204', 4, 33.63038600, 1, 1, 1, '52810', 33.63038600, '1', 1, 'R.jpeg', 0, 'http://greenholt.org/animi-pariatur-dolore-blanditiis-sit-non-eos', 0, 'http://kulas.com/aut-neque-cupiditate-aut-repellat-voluptas-eos-facilis-ipsam', 0, 1, 1234567890, 1, 1, 1, 'Kassulke PLC', 'Hoeger and Sons', 3, 1, 'Enim facere dignissimos debitis repellendus quasi autem saepe. Et voluptatum cumque praesentium et accusantium. Quod quod soluta dicta aliquid animi.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(24, 1, 68, 1, '1', 1, 0, 238.22, 'Deluxe Room', 'http://www.erdman.biz/porro-at-rerum-exercitationem-accusamus-sed-aliquam', '0', 0, 0, 0, 0, 198.01, 257.34, 0, 'R.jpeg', 'R.jpeg', 1, 0, 'http://paucek.com/qui-doloremque-aliquid-eligendi-non-eum-dolores', 0, 1, 'CRN123', 1, 'lucie.herzog@gmail.com', 'http://www.larson.org/dicta-nesciunt-voluptate-culpa-asperiores-temporibus', 193.33, 0, 'http://eichmann.com/beatae-quia-exercitationem-assumenda-temporibus-porro-incidunt', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '979 Rosendo Meadows\nNorth Sylviamouth, MD 91549', 3, 33.63038600, 1, 1, 0, '24804-3883', 33.63038600, '1', 1, 'R.jpeg', 1, 'http://runte.biz/mollitia-culpa-repellendus-sit-officia-nulla-dicta', 1, 'http://rolfson.biz/hic-nemo-repudiandae-voluptas-ut', 1, 0, 1234567890, 1, 0, 0, 'O\'Hara LLC', 'Smitham Inc', 3, 0, 'Modi et earum laboriosam laborum odit consequatur temporibus laudantium. Ad consequatur est possimus quae. Illo iure placeat occaecati est enim aut est. Voluptas tenetur dicta assumenda neque libero aut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(25, 1, 45, 0, '1', 0, 0, 158.10, 'Deluxe Room', 'http://www.abernathy.com/', '0', 0, 0, 1, 0, 103.72, 195.36, 0, 'R.jpeg', 'R.jpeg', 0, 1, 'https://beatty.info/fuga-nemo-hic-dolor-quas-id.html', 0, 1, 'CRN123', 1, 'titus.koelpin@brakus.biz', 'https://www.howell.com/quia-iusto-nobis-dolores-voluptatum-aliquam-sit-architecto', 248.60, 1, 'http://davis.biz/id-tempora-iusto-ipsa-et', 1, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '7031 Melvina Spur Suite 200\nTreutelton, NV 29148-2051', 13, 33.63038600, 1, 1, 0, '36501-4440', 33.63038600, '0', 0, 'R.jpeg', 1, 'http://www.shanahan.com/id-voluptate-nisi-odio-alias-labore-eum', 1, 'http://boyer.com/', 0, 0, 1234567890, 0, 1, 1, 'Hoppe LLC', 'Doyle-Smitham', 1, 1, 'Sint eius quo quibusdam autem voluptas et et. Eos illo repellat suscipit placeat nostrum odit. Odio est non in eaque consectetur. A et doloribus odit enim.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(26, 1, 74, 0, '0', 1, 1, 240.62, 'Deluxe Room', 'http://www.stiedemann.org/ea-quae-natus-modi-cupiditate-et-sit-sint', '1', 0, 0, 0, 1, 188.47, 277.11, 0, 'R.jpeg', 'R.jpeg', 1, 0, 'http://grimes.com/unde-magni-quam-autem-possimus-aut', 0, 1, 'CRN123', 1, 'eledner@hotmail.com', 'https://koch.com/facere-quos-aliquid-modi-eius.html', 256.89, 1, 'http://osinski.com/dolores-voluptates-ipsum-officia-aspernatur-quo-sunt-quas-consequatur.html', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '99961 Hessel Fords\nPort Claude, UT 01195', 11, 33.63038600, 1, 1, 1, '92072-0757', 33.63038600, '0', 0, 'R.jpeg', 1, 'http://okeefe.com/', 0, 'http://www.mcdermott.info/repellendus-totam-rerum-et-id', 0, 0, 1234567890, 0, 0, 0, 'O\'Connell, Murazik and Bogisich', 'Runolfsdottir, Botsford and Gibson', 3, 0, 'Autem est perspiciatis soluta eum soluta consequatur et. Sint laboriosam placeat voluptas consequuntur aut quo quae illum. Animi vitae doloribus error et. Voluptas at animi corporis placeat eligendi dicta asperiores. Modi officia nam architecto laudantium cum vitae quis ut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(27, 1, 64, 1, '0', 0, 1, 264.88, 'Deluxe Room', 'http://www.bernier.com/et-est-numquam-placeat-et-vel-ab', '1', 1, 1, 0, 0, 131.90, 283.59, 0, 'R.jpeg', 'R.jpeg', 0, 0, 'http://www.brekke.com/', 0, 0, 'CRN123', 0, 'wgottlieb@bahringer.com', 'http://yost.info/', 191.24, 1, 'https://cassin.org/iste-nemo-velit-voluptate-voluptas-et.html', 1, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '633 Marley Lodge Suite 515\nHayesside, IL 92182-7960', 15, 33.63038600, 1, 1, 1, '26430-4778', 33.63038600, '1', 0, 'R.jpeg', 0, 'http://www.raynor.com/quo-quia-voluptatem-provident-est-ab-laboriosam-ut', 0, 'https://www.orn.com/consequatur-magnam-mollitia-distinctio-ea-aut-eum', 0, 0, 1234567890, 1, 0, 0, 'Spencer, Gleichner and Jaskolski', 'Brekke, Jast and Jacobs', 2, 1, 'Molestiae ad odit assumenda quia consequuntur. Possimus beatae explicabo et sit unde veniam. Ab ut et veniam.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(28, 1, 37, 0, '0', 0, 1, 186.64, 'Deluxe Room', 'http://little.com/doloremque-laboriosam-aliquam-quisquam-reiciendis-aperiam-rerum-cum', '0', 0, 1, 1, 0, 112.33, 196.11, 0, 'R.jpeg', 'R.jpeg', 1, 1, 'http://www.kunze.info/quia-consequuntur-sint-sed-esse-laudantium-saepe-cupiditate-eos', 0, 0, 'CRN123', 0, 'melvin.schaefer@jaskolski.net', 'http://www.ortiz.com/reiciendis-ab-rerum-vel-tempora-autem-deserunt-officia', 203.28, 0, 'http://www.kozey.org/non-numquam-maxime-labore-et', 0, 1, 'R.jpeg', 'Luxury Room', 'Luxury', '2878 Olson Turnpike Apt. 383\nLittelport, WV 26269', 13, 33.63038600, 1, 0, 0, '91639-5482', 33.63038600, '0', 1, 'R.jpeg', 1, 'http://www.friesen.biz/amet-quia-sequi-labore-vitae-esse-ab-dolor', 1, 'http://www.jerde.com/in-minima-in-quas-est-deleniti-expedita-quisquam', 1, 0, 1234567890, 0, 0, 1, 'Tillman-Legros', 'Langworth, McClure and Kuhlman', 3, 1, 'Totam et dolores et adipisci maxime. Nesciunt maxime minima labore at est illum iure iure. Tempora rerum adipisci et in sed natus fugit.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(29, 1, 68, 0, '1', 1, 0, 204.11, 'Deluxe Room', 'https://www.abbott.biz/facilis-quia-commodi-dolor-at', '1', 0, 0, 0, 1, 155.68, 192.80, 1, 'R.jpeg', 'R.jpeg', 1, 0, 'http://ankunding.com/', 1, 1, 'CRN123', 0, 'eladio.ward@kassulke.com', 'http://fay.com/et-sunt-quas-id-magnam-velit-molestiae', 157.82, 1, 'https://www.schroeder.com/quos-modi-explicabo-natus-earum-adipisci-esse', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '7984 Hermann Drive Suite 658\nWest Hardy, HI 69124-1768', 11, 33.63038600, 0, 1, 1, '05183-7544', 33.63038600, '1', 1, 'R.jpeg', 0, 'http://www.lakin.com/qui-et-saepe-placeat-dolores', 1, 'http://lesch.com/quam-quia-nihil-omnis-quasi-possimus-et.html', 1, 0, 1234567890, 1, 0, 0, 'Steuber-Wolf', 'Littel-Cremin', 3, 0, 'Fugit omnis ut ut quia necessitatibus minus non. Ut veniam unde quibusdam itaque. Qui accusamus dignissimos distinctio quos ut facere. Ad cupiditate voluptates cupiditate culpa eaque ut porro error.', '2024-12-05 14:05:27', '2024-12-05 14:05:27'),
+(30, 1, 56, 1, '0', 0, 1, 283.28, 'Deluxe Room', 'https://www.swift.net/quisquam-consectetur-eos-voluptas-est-animi-laborum', '0', 1, 0, 1, 1, 135.31, 268.40, 0, 'R.jpeg', 'R.jpeg', 1, 1, 'https://kling.com/perferendis-aliquid-eveniet-dolores-voluptatum.html', 0, 0, 'CRN123', 0, 'fwatsica@hotmail.com', 'http://www.hirthe.info/autem-velit-dolorem-aut-et.html', 268.06, 0, 'http://lueilwitz.com/rerum-sunt-dolores-ut', 0, 0, 'R.jpeg', 'Luxury Room', 'Luxury', '80406 Ondricka Flat Apt. 805\nLulashire, MA 57044', 18, 33.63038600, 1, 0, 0, '49875-4530', 33.63038600, '1', 1, 'R.jpeg', 0, 'http://corwin.com/ab-ab-aut-ut-velit-ut-explicabo', 0, 'https://www.goldner.com/quos-repudiandae-cupiditate-velit', 1, 1, 1234567890, 0, 1, 1, 'McDermott PLC', 'Berge PLC', 2, 0, 'Id sint ullam eos porro dolores illum ipsa porro. Rerum aut consequatur officiis consequuntur quis. Ut vel odit sunt quibusdam aut.', '2024-12-05 14:05:27', '2024-12-05 14:05:27');
 
 -- --------------------------------------------------------
 
@@ -2390,8 +2434,8 @@ CREATE TABLE IF NOT EXISTS `hotels` (
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE IF NOT EXISTS `jobs` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `queue` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint UNSIGNED NOT NULL,
   `reserved_at` int UNSIGNED DEFAULT NULL,
   `available_at` int UNSIGNED NOT NULL,
@@ -2408,13 +2452,13 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 
 DROP TABLE IF EXISTS `job_batches`;
 CREATE TABLE IF NOT EXISTS `job_batches` (
-  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL,
@@ -2430,7 +2474,7 @@ CREATE TABLE IF NOT EXISTS `job_batches` (
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2454,8 +2498,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2501,8 +2545,8 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
   `hotel_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tpnumber` int NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
@@ -2514,7 +2558,16 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `user_id`, `hotel_id`, `name`, `email`, `tpnumber`, `start_date`, `end_date`, `adult_count`, `child_count`, `room_type`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 12, 'Thisara Samarasinghe', 'thisaratharinda196@gmail.com', 123456789, '2024-12-04', '2024-12-10', 2, 1, 2, 1456.00, 1, '2024-12-04 14:24:04', '2024-12-04 16:33:09'),
+(2, 1, 2, 'Thisara Samarasinghe', 'thisaratharinda196@gmail.com', 123456789, '2024-12-04', '2024-12-04', 1, 0, 2, 231.00, 1, '2024-12-04 14:39:39', '2024-12-05 05:05:48'),
+(3, 1, 2, 'Thisara Samarasinghe', 'thisaratharinda196@gmail.com', 123456789, '2024-12-04', '2024-12-04', 1, 0, 2, 231.00, 0, '2024-12-04 14:41:29', '2024-12-04 14:41:29');
 
 -- --------------------------------------------------------
 
@@ -2524,11 +2577,11 @@ CREATE TABLE IF NOT EXISTS `reservations` (
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE IF NOT EXISTS `sessions` (
-  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -2540,10 +2593,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('RB0fgr4YyLlNZIWRYlhuQJRIdjTXQgRWPQj32EmG', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiV0hrMURpQmhWYUF4UmhyN084TVh6bDQ1YVhnQlVtYVZOQVNEeWdOTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ob3RlbHMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1733303322),
-('UfOHJRwMFU3jA4uQIRRWwwFyyVzHZXO6XkzvxINA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVG9yUUVQMmJmaHliNDN2ZkxENEFqaFJjY0Y2Z01yMmNlNDM0QlFsOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob3RlbHMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1733301831),
-('J04YcYxSRK6MdiJUY5s5kaaRoYbuehw0qKhPrdz0', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN3dTNWFtS1JHUWlxdHlzTzR1Wkc3MzhvSndNUEhaZzhGS3BZbXRnRyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1733307851),
-('SOmVt5rKllKPOD36g2zemhjKnE0rEEsSo5LsGt75', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieDNBb3plRzR3bkZEbmNHdnlmNW01NzFYZzNPWFFBWTFIZFJxb2VoaSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvaG90ZWwvMTMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1733302118);
+('kOg7tVejNoMjaWvviHUwqGsEgmswLHZNGBhASuY5', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSnM0eldLYTVqSFRaNW1NQ0RKNlJlZUZNRHFSQXF0RVZuTXFIRzRHdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ob3RlbC8yNyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1733427829);
 
 -- --------------------------------------------------------
 
@@ -2554,17 +2604,26 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `user_type`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Thisara Samarasinghe', 'hotel', 'thisaratharinda196@gmail.com', NULL, '$2y$12$xASRUasjqLlBA6bfIV859.U18fxVjPFzgTyN6T8Ri19KjsSR/1XdO', NULL, '2024-12-01 10:33:48', '2024-12-01 10:33:48'),
+(2, 'kamal sooriyarachchi', 'admin', 'kamalsooriyaracchi@gmail.com', NULL, '$2y$12$fvwLekn1MPP4NBpGnKcLPO94/.latOrLNx1.tncmBPd2vsZmvbRD.', NULL, '2024-12-03 09:34:53', '2024-12-03 09:34:53'),
+(3, 'kamal sooriyarachchi', 'customer', '2020t00906@stu.cmb.ac.lk', NULL, '$2y$12$NsDnzHhog32wkw.8ZbaOcudssD9uRytFY1Jkpj.YFJnNZkSehwW.G', NULL, '2024-12-03 13:27:43', '2024-12-03 13:27:43');
 
 --
 -- Constraints for dumped tables
