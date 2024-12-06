@@ -14,7 +14,7 @@ class WebController extends Controller
 {
     public function index()
     {
-        $hotels = Hotel::Where('type', 2)->orderBy('created_at', 'desc')->with(['cities.district'])->get(['id','title','city','address','zip_code','thumbnail','price_from'])->take(10);
+        $hotels = Hotel::Where('type', 2)->orderBy('created_at', 'desc')->with(['cities.district'])->get(['id','title','city','address','zip_code','thumbnail','price_from'])->take(9);
         // dd($hotels->toArray());
         // $hotels = Hotel::with(['cities.district'])->first();
         // dd($hotels);
@@ -59,7 +59,7 @@ class WebController extends Controller
     }
 
     public function hotels(){
-        $hotels = Hotel::where('type', 2)->with(['cities.district'])->select(['id','city', 'title', 'address', 'zip_code', 'thumbnail', 'price_from'])->paginate(10);
+        $hotels = Hotel::where('type', 2)->with(['cities.district'])->select(['id','city', 'title', 'address', 'zip_code', 'thumbnail', 'price_from'])->paginate(9);
         // dd($hotels);
 
         $cities = City::with('district')->get();
