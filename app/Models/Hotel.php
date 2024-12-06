@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Models;
+use App\Models\City;
+use App\Models\Reservation;
+use App\Models\User;
+use App\Models\District;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -86,7 +90,7 @@ class Hotel extends Model
         return $this->belongsTo(City::class, 'city', 'id');
     }
     public function districts(){
-        return $this->belongsTo(City::class, 'district', 'id');
+        return $this->belongsTo(District::class, 'district', 'id');
     }
 
     public function reservations(){
