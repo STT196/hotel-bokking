@@ -43,11 +43,11 @@
 
                                         <?php
                                         $status = '';
-                                        switch ($hotel->status) {
-                                            case 1:
+                                        switch ($hotel->type) {
+                                            case 2:
                                                 $status = 'Aprroved';
                                                 break;
-                                            case 0:
+                                            case 3:
                                                 $status = 'Declined';
                                                 break;
                                         }

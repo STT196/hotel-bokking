@@ -84,7 +84,7 @@ class HotelController extends Controller
             'thumbnail' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'luxury_room_name' => 'nullable|string|max:255',
             'room_type' => 'nullable|string|max:255',
-            'type' => 'nullable|numeric',
+            // 'type' => 'nullable|numeric',
             'telephone' => 'required|numeric|min:10',
             'address' => 'nullable|string|max:500',
             'longitude' => 'nullable|numeric',
@@ -144,7 +144,7 @@ class HotelController extends Controller
             $thumbnail->move($destinationPath, $thumbnailName);
             $profile->thumbnail = 'thumbnail/' . $thumbnailName;
         }
-
+        $profile->type = 1; //for status 1 is pending 2 is approved 3 is declined
         $profile->save();
         return redirect()->back()->with('success', 'Data saved successfully.');
     }
