@@ -5,13 +5,12 @@
                 {{ __('Profile') }}
             </h2>
             <div class="text-right">
-                @if($hotel ==1)
-
-                <span class="text-yellow-500">Pending</span>
-                @elseif ($hotel ==2)
-                <span class="text-green-500">Approved</span>
+                @if ($hotel == 1)
+                    <span class="text-yellow-500">Pending</span>
+                @elseif ($hotel == 2)
+                    <span class="text-green-500">Approved</span>
                 @else
-                <span class="text-gray-500">No profile</span>
+                    <span class="text-gray-500">No profile</span>
                 @endif
             </div>
         </div>
@@ -397,9 +396,10 @@
                                                     <div class="search_filter select-fields">
                                                         <label for="district">District</label>
 
-                                                    <select id="district" name="district" class="form-select" required>
-                                                        <option value="">Select District</option>
-                                                    </select>
+                                                        <select id="district" name="district" class="form-select"
+                                                            required>
+                                                            <option value="">Select District</option>
+                                                        </select>
 
                                                     </div>
                                                 </div>
@@ -407,10 +407,11 @@
 
                                                     <div class="search_filter select-fields">
 
-                                                    <label for="city">City</label>
-                                                    <select id="city" name="city" class="form-select disabled" disabled required>
-                                                        <option value="">Select City</option>
-                                                    </select>
+                                                        <label for="city">City</label>
+                                                        <select id="city" name="city"
+                                                            class="form-select disabled" disabled required>
+                                                            <option value="">Select City</option>
+                                                        </select>
 
                                                     </div>
                                                 </div>
@@ -461,7 +462,9 @@
                                 "cityName": "{{ $city->name_en }}",
                                 "cityId": "{{ $city->id }}"
                             }
-                            @if (!$loop->last), @endif
+                            @if (!$loop->last)
+                                ,
+                            @endif
                         @endforeach
                     ]
                 },
@@ -496,7 +499,8 @@
                     $('#city').html(cityOptions).prop("disabled", false).removeClass('disabled').select2();
                 } else {
                     // Reset city dropdown if no district is selected
-                    $('#city').html('<option value="">Select City</option>').prop("disabled", true).addClass('disabled');
+                    $('#city').html('<option value="">Select City</option>').prop("disabled", true)
+                        .addClass('disabled');
                 }
             });
         });
@@ -504,18 +508,13 @@
 
 
 
-    @if ($errors->any())
+    @if (session('error'))
         <script>
-            let erroList = '';
-            @foreach ($errors->all() as $error)
-                erroList += '{{ $error }}<br>';
-            @endforeach
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
-                    icon: "error",
                     title: "Error",
-                    html: erroList,
-                    showConfirmButton: true,
+                    text: '{{ session('error') }}',
+                    icon: "error",
                     confirmButtonColor: '#9FCED3',
                 });
             });
@@ -523,20 +522,19 @@
     @endif
 
 
-
     @if (session('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-            title: "Successfully Added!",
-            icon: "success",
-            confirmButtonColor: '#9FCED3',
-            confirmButtonText: 'Preview'
-            }).then((result) => {
-            if (result.isConfirmed) {
-            window.location.href = "{{ route('hotel.show', session('hotel')->id ) }}";
-            }
-            });
+                Swal.fire({
+                    title: "Successfully Added!",
+                    icon: "success",
+                    confirmButtonColor: '#9FCED3',
+                    confirmButtonText: 'Preview'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ route('hotel.show', session('hotel')->id) }}";
+                    }
+                });
             });
         </script>
     @endif

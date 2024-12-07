@@ -160,24 +160,18 @@
             </script>
         @endif
 
-        @if ($errors->any())
+        @if (session('error'))
         <script>
-            let erroList = '';
-            @foreach ($errors->all() as $error)
-                erroList += '{{ $error }}<br>';
-            @endforeach
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
-                    icon: "error",
                     title: "Error",
-                    html: erroList,
-                    showConfirmButton: true,
+                    text: '{{ session('error') }}',
+                    icon: "error",
                     confirmButtonColor: '#9FCED3',
                 });
             });
         </script>
     @endif
-
 
         @if (session('success'))
             <script>
