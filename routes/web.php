@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/customer/pending', [CustomerController::class, 'pending'])->name('cus.pending');
     Route::get('/customer/history', [CustomerController::class, 'history'])->name('cus.history');
     Route::get('/customer/recipet/{booking}', [CustomerController::class, 'recipet'])->name('cus.recipet')->middleware('customer');
+    Route::get('/customer/cancel/{booking}', [CustomerController::class, 'cancel'])->name('cus.cancel')->middleware('customer');
 
 });
 Route::middleware(['auth', 'verified','admin'])->group(function () {

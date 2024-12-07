@@ -1,8 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Profile') }}
+            </h2>
+            <div class="text-right">
+                @if($hotel ==1)
+
+                <span class="text-yellow-500">Pending</span>
+                @elseif ($hotel ==2)
+                <span class="text-green-500">Approved</span>
+                @else
+                <span class="text-gray-500">No profile</span>
+                @endif
+            </div>
+        </div>
     </x-slot>
     <div class="py-12">
 
@@ -385,7 +397,7 @@
                                                     <div class="search_filter select-fields">
                                                         <label for="district">District</label>
 
-                                                    <select id="district" name="district" class="form-select">
+                                                    <select id="district" name="district" class="form-select" required>
                                                         <option value="">Select District</option>
                                                     </select>
 
@@ -396,7 +408,7 @@
                                                     <div class="search_filter select-fields">
 
                                                     <label for="city">City</label>
-                                                    <select id="city" name="city" class="form-select disabled" disabled>
+                                                    <select id="city" name="city" class="form-select disabled" disabled required>
                                                         <option value="">Select City</option>
                                                     </select>
 
@@ -424,16 +436,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h3>Video</h3>
-                                <div class="fields">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input type="text" name="youtube_link"
-                                                placeholder="https://www.youtube.com/watch?v=dVkK36KOcqs">
-                                            <label class="no_margine">Allow Youtube OR Vimeo Video URL</label>
-                                        </div>
-                                    </div>
-                                </div>
+
+
 
                             </div>
                             <button class="btn btn-default mb-5">Save &amp; Preview</button>
@@ -518,28 +522,21 @@
         </script>
     @endif
 
-    @if (session('error'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: "Error",
-                    text: '{{ session('error') }}',
-                    icon: "error",
-                    confirmButtonColor: '#9FCED3',
-                });
-            });
-        </script>
-    @endif
+
 
     @if (session('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: "Successfully Added!",
-                    // text: "Item Added Succesfully!",
-                    icon: "success",
-                    confirmButtonColor: '#9FCED3',
-                });
+            Swal.fire({
+            title: "Successfully Added!",
+            icon: "success",
+            confirmButtonColor: '#9FCED3',
+            confirmButtonText: 'Preview'
+            }).then((result) => {
+            if (result.isConfirmed) {
+            window.location.href = "{{ route('hotel.show', session('hotel')->id ) }}";
+            }
+            });
             });
         </script>
     @endif

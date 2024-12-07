@@ -179,19 +179,13 @@
                             @endif
                         </ul>
                     </div>
-                    <div class="hs-tour-sec">
-                        <h4><a href="">Take a Tour</a></h4>
-                        <!-- Button trigger modal -->
-                        <iframe height="500" width="831"
-                            src="{{ $details->youtube_link ? $details->youtube_link : 'https://www.youtube.com/embed/tgbNymZ7vqY' }}"
-                            style="border: none;">
-                        </iframe>
 
-                    </div>
                     <div class="hs-pricing-table page-content p-30">
                         <h4><a href="">Pricing-plan</a></h4>
                         <div class="row">
+                            @isset($details->crn_price)
                             <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+
                                 <div class="card">
                                     <h5><a href="">comfort room</a></h5>
                                     <img width="246px" height="174x" src="{{ asset($details->crn_photo) }}"
@@ -220,6 +214,8 @@
                                     </div>
                                 </div>
                             </div>
+                            @endisset
+                            @isset($details->luxury_room_price)
                             <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div class="card">
                                     <h5><a href="">Luxury Room</a></h5>
@@ -249,6 +245,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @endisset
+                            @isset($details->deluxe_room_price)
+
                             <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div class="card">
                                     <h5><a href="">deluxe Room</a></h5>
@@ -278,6 +277,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endisset
                         </div>
                     </div>
 

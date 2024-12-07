@@ -22,6 +22,7 @@
                                 <th class="px-4 py-2">childs</th>
                                 <th class="px-4 py-2">Price</th>
                                 <th class="px-4 py-2">Room Type</th>
+                                <th class="px-4 py-2"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +52,10 @@
                                     }
                                     echo '<td class="border px-4 py-2">' . $room . '</td>';
                                     ?>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('cus.cancel', $booking->id) }}" class="section3_btn btn2"
+                                            id="decline">Cancel</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -96,7 +101,7 @@
                             showCancelButton: true,
                             confirmButtonColor: '#d33',
                             cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'Yes, Decline!'
+                            confirmButtonText: 'Yes, Cancel!'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = event.target.href; // Navigate to link href
@@ -129,25 +134,30 @@
             </script>
         @endif
 
-        @if (session('error'))
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        title: "Error",
-                        text: '{{ session('error') }}',
-                        icon: "error",
-                        confirmButtonColor: '#9FCED3',
-                    });
+        @if ($errors->any())
+        <script>
+            let erroList = '';
+            @foreach ($errors->all() as $error)
+                erroList += '{{ $error }}<br>';
+            @endforeach
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    html: erroList,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#9FCED3',
                 });
-            </script>
-        @endif
+            });
+        </script>
+    @endif
 
         @if (session('success'))
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     Swal.fire({
-                        title: "Successfully Added!",
-                        // text: "Item Added Succesfully!",
+                        title: "Successfull",
+                        text: "{{session('success')}}",
                         icon: "success",
                         confirmButtonColor: '#9FCED3',
                     });

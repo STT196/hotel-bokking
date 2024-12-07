@@ -94,31 +94,39 @@
                                         </li>
                                     @endguest
                                     @auth
+                                     @if (Auth::user()->user_type === 'customer')
+                                            <li class="nav-item  wrap-nav-item">
+                                                <form action="{{ route('cus.pending') }}" method="GET">
+
+                                                    <button type="submit" class="button-custom">Dashboard</button>
+                                                </form>
+                                            </li>
+                                        @elseif (Auth::user()->user_type === 'hotel')
+                                            <li class="nav-item  wrap-nav-item">
+                                                <form action="{{ route('pending') }}" method="GET">
+
+                                                    <button type="submit" class="button-custom ">Dashboard</button>
+                                                </form>
+                                            </li>
+                                        @else
+                                            <li class="nav-item  wrap-nav-item">
+                                                <form action="{{ route('dashboard') }}" method="GET">
+
+                                                    <button type="submit" class="button-custom">Dashboard</button>
+                                                </form>
+                                            </li>
+                                        @endif
                                     <li class="nav-item p-rel">
-                                        <a href="javascript:;" class="nav-link btn btn-outline-dark">
+                                        <a href="javascript:;" class="nav-link button-custom-dark">
                                             {{ explode(' ', Auth::user()->name)[0] }}
                                             <i class="fas fa-caret-down"></i>
                                         </a>
                                         <ul class="dropdown-items">
-                                            @if (Auth::user()->user_type === 'customer')
-                                                <li>
-                                                    <form action="{{ route('cus.pending') }}" method="GET">
 
-                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
-                                                    </form>
-                                                </li>
-                                            @else
-                                                <li>
-                                                    <form action="{{ route('pending') }}" method="GET">
-
-                                                        <button type="submit" class="btn btn-outline">Dashboard</button>
-                                                    </form>
-                                                </li>
-                                            @endif
                                             <li>
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline">Logout</button>
+                                                    <button type="submit" class="button-custom">Logout</button>
                                                 </form>
                                             </li>
                                         </ul>
@@ -152,12 +160,12 @@
                             @if (Auth::user()->user_type == 'customer')
                                 <form action="{{ route('cus.pending') }}" method="GET">
 
-                                    <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
+                                    <button type="submit" class="button-custom ps-3"> Dashboard</button>
                                 </form>
                             @else
                                 <form action="{{ route('pending') }}" method="GET">
 
-                                    <button type="submit" class="btn btn-outline ps-3"> Dashboard</button>
+                                    <button type="submit" class="button-custom ps-3"> Dashboard</button>
                                 </form>
                             @endif
 
@@ -165,7 +173,7 @@
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-outline ps-3"> Logout</button>
+                                <button type="submit" class="button-custom ps-3"> Logout</button>
                             </form>
                         </li>
                     @endauth

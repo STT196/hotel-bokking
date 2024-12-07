@@ -474,6 +474,23 @@ a:hover {
 	color: #fff;
 	font-size: 18px;
 }
+.button-custom {
+    text-transform: capitalize;
+    color: #fff;
+    font-size: 18px;
+    background-color: #2EC4B6; /* Add a background color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add padding */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+    text-align: center; /* Center the text */
+    display: inline-block; /* Make it inline-block */
+}
+
+.button-custom:hover {
+    /* background-color: #1BA89C; Change background color on hover */
+    color: #fff; /* Ensure text color remains white on hover */
+}
 
 .main_menu_wrapper .navbar-expand-sm .navbar-nav {
 	justify-content: space-around;

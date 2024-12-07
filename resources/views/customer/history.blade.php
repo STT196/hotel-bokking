@@ -62,15 +62,23 @@
                                             case 2:
                                                 $status = 'Declined';
                                                 break;
+                                            case 3:
+                                                $status = 'Cancelled';
+                                                break;
                                         }
                                         echo '<td class="border px-4 py-2">' . $status . '</td>';
                                         ?>
-                                     <td class="border px-4 py-2 align-middle text-center">
-                                        <a href="{{ route('cus.recipet', $booking->id) }}" class="btn btn-success " target="_blank">
-                                            View
-                                        </a>
-                                        <div class="pb-3"></div>
-                                    </td>
+                                        @if ($booking->status != 3)
+
+                                        <td class="border px-4 py-2 align-middle text-center">
+                                           <a href="{{ route('cus.recipet', $booking->id) }}" class="btn btn-success " target="_blank">
+                                               View
+                                           </a>
+                                           <div class="pb-3"></div>
+                                       </td>
+                                       @else
+                                       <td class="border px-4 py-2"></td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -151,18 +159,23 @@
             </script>
         @endif
 
-        @if (session('error'))
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        title: "Error",
-                        text: '{{ session('error') }}',
-                        icon: "error",
-                        confirmButtonColor: '#9FCED3',
-                    });
+        @if ($errors->any())
+        <script>
+            let erroList = '';
+            @foreach ($errors->all() as $error)
+                erroList += '{{ $error }}<br>';
+            @endforeach
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    html: erroList,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#9FCED3',
                 });
-            </script>
-        @endif
+            });
+        </script>
+    @endif
 
         @if (session('success'))
             <script>

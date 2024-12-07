@@ -22,6 +22,12 @@ class CustomerController extends Controller
         return view('customer.history',compact('new_request'));
     }
 
+    public function cancel($booking){
+        $new_request = Reservation::find($booking);
+        $new_request->status = 3;
+        $new_request->save();
+        return redirect()->back()->with('success','Booking Cancelled');
+    }
     public function recipet($booking){
         // ->whereHas('user',function($query){
         //     $query->where('user_id',Auth::user()->id);

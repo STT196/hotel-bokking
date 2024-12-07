@@ -33,7 +33,7 @@ class WebController extends Controller
         $cisId = $request->city;
 
 
-        $hotels = Hotel::where('status', true)->with('cities.district')
+        $hotels = Hotel::where('type', 2)->with('cities.district')
         ->when($request->city, function ($query, $cityId) {
             return $query->where('city', $cityId);
         })

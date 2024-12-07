@@ -22,7 +22,7 @@ class HotelController extends Controller
         ->whereHas('hotel', function($query) {
             $query->where('user_id', Auth::user()->id);
         })
-        ->where('status',0)->get();
+        ->where('status',0)->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('hotels.pending',compact('new_request'));
     }
@@ -30,24 +30,30 @@ class HotelController extends Controller
      public function history(){
         $new_request = Reservation::with('hotel')->whereHas('hotel', function($query) {
             $query->where('user_id', Auth::user()->id);
-        })->where('status', '>=', 1)->get();
+        })->where('status', '>=', 1)->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('hotels.history',compact('new_request'));
     }
 
      public function view(){
+        $hotel = null;
         $districts = District::with('city')->get();
+        if (Hotel::where('user_id', Auth::id())->exists()) {
+            $hotel=Hotel::where('user_id', Auth::id())->first()->type;
+        }
+        // dd($hotel);
         // dd($districts);
-        return view('hotels.profile',compact('districts'));
+        return view('hotels.profile',compact('districts','hotel'));
      }
 
 
     public function store(Request $request)
     {
         // Validate the input fields
-        // if (Hotel::where('user_id', Auth::id())->exists()) {
-        //     return redirect()->back()->with('error', 'You have already created a profile.');
-        // }
+        if (Hotel::where('user_id', Auth::id())->exists()) {
+            // $hotel=Hotel::where('user_id', Auth::id())->first();
+            return redirect()->back()->with('error','You have already created a profile.');
+        }
 
         $validatedData = $request->validate([
             'security' => 'nullable|boolean',
@@ -108,8 +114,8 @@ class HotelController extends Controller
             'title' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
             'breakfast' => 'nullable|boolean',
-            'district' => 'nullable|numeric',
-            'city' => 'nullable|numeric',
+            'district' => 'required',
+            'city' => 'required',
 
         ]);
 
@@ -146,19 +152,23 @@ class HotelController extends Controller
         }
         $profile->type = 1; //for status 1 is pending 2 is approved 3 is declined
         $profile->save();
-        return redirect()->back()->with('success', 'Data saved successfully.');
+
+        $hotel=Hotel::where('user_id',Auth::user()->id)->first(['type', 'id']);
+
+
+        return redirect()->back()->with(['success' => 'Data saved successfully.', 'hotel' => $hotel]);
     }
 
     public function aprrove($booking){
         // dd($booking);
-        $hotel = Reservation::find($booking);
+        $hotel = Reservation::where('id',$booking)->first();
         $hotel->status = 1;
         $hotel->save();
         return redirect()->back()->with('success', 'Data saved successfully.');
     }
 
     public function decline($booking){
-        $hotel = Reservation::find($booking);
+        $hotel = Reservation::where('id',$booking)->first();
         $hotel->status = 2;
         $hotel->save();
         return redirect()->back()->with('success', 'Data saved successfully.');
