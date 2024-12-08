@@ -299,7 +299,7 @@
 
                                     </li>
                                     <li>
-                                        <input type="text" placeholder="TPNumber" name="tpnumber" required>
+                                        <input type="text" placeholder="Enter Phone Number" name="tpnumber" required>
 
                                     </li>
                                     <li>

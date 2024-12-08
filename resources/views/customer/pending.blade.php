@@ -28,7 +28,6 @@
                         <tbody>
                             @foreach ($new_request as $booking)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $booking->id }}</td>
                                     <td class="border px-4 py-2">{{ $booking->hotel->title }}</td>
                                     <td class="border px-4 py-2">{{ $booking->hotel->email }}</td>
                                     <td class="border px-4 py-2">{{ $booking->hotel->telephone}}</td>
