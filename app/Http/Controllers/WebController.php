@@ -52,7 +52,7 @@ class WebController extends Controller
             return $query->where('price_from', '<=', $maxPrice);
         })
         ->select(['id', 'title', 'district', 'city', 'address', 'zip_code', 'thumbnail', 'price_from'])
-        ->paginate(10);
+        ->paginate(9);
         // ;
         // $districts = District::with('city')->get();
         $cities = City::with('district')->get();
