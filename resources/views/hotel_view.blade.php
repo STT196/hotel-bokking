@@ -303,7 +303,8 @@
 
                                     </li>
                                     <li>
-                                        <input id="bookingFrom" name="start_date" type="date"  class="" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">
+                                        <label for="bookingFrom">Check In</label>
+                                        <input id="bookingFrom" name="start_date" type="date"  class="" placeholder="check In" >
                                         {{-- <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 19 20" width="19" height="20">
                                             <title>Icon </title>
@@ -323,7 +324,9 @@
                                     </li>
                                     <input type="hidden" name="hotel_id" value="{{ $details->id }}">
                                     <li>
-                                        <input id="bookingTo" name="end_date" type="date"  class="" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d')}}">
+
+                                        <label for="bookingTo">Check Out</label>
+                                        <input id="bookingTo" name="end_date" type="date"  class="" placeholder="Check Out">
                                         {{-- <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 19 20" width="19" height="20">
                                             <title>Icon </title>

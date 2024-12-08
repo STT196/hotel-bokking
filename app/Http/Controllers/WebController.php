@@ -31,7 +31,10 @@ class WebController extends Controller
         $max = (float)$request->max;
         $disId = $request->district;
         $cisId = $request->city;
-
+        $searchCity = City::where('id', $request->city)->exists() ? City::where('id', $request->city)->first()->name_en : null;
+        $searchDistrict = District::where('id',$request->district)->exists() ? District::where('id', $request->district)->first()->name_en : null;
+        $search='Results for ';
+        // dd($searchCity,$searchDistrict);
 
         $hotels = Hotel::where('type', 2)->with('cities.district')
         ->when($request->city, function ($query, $cityId) {
@@ -55,7 +58,7 @@ class WebController extends Controller
         $cities = City::with('district')->get();
 
         // dd($hotels);
-        return view('hotels', compact('hotels','cities'));
+        return view('hotels', compact('hotels','cities','searchCity','searchDistrict','search'));
     }
 
     public function hotels(){
@@ -87,16 +90,17 @@ class WebController extends Controller
             'room_type' => 'required|numeric',
             // 'amount' => 'required|numeric|min:1',
         ]);
-        $keword = '';
-        if($request->room_type == 1){
-            $keword = 'crn_price';
-        }
-        elseif($request->room_type == 2){
-            $keword = 'luxury_room_price';
-        }
-        else{
-            $keword = 'deluxe_room_price';
-        }
+        // $keword = '';
+        // if($request->room_type == 1){
+        //     $keword = 'crn_price';
+        // }
+        // elseif($request->room_type == 2){
+        //     $keword = 'luxury_room_price';
+        // }
+        // else{
+        //     $keword = 'deluxe_room_price';
+        // }
+        $keword = $request->roomtype == 1 ? 'crn_price' :($request->roomtype == 2 ? 'luxury_room_price' : 'deluxe_room_price');
 
         $start_date = \Carbon\Carbon::parse($request->start_date);
         $end_date = \Carbon\Carbon::parse($request->end_date);

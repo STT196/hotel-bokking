@@ -230,25 +230,33 @@
 
                 @foreach ($hotels as $hotel)
                     <div class="col-xl-4 col-lg-6 pt-4 col-md-6 col-sm-12 col-12">
-                        <div class="sub-main">
-                            <div class="img-sec p-rel">
-                                <div class="hover-img p-rel">
+                        <a href="{{ route('hotel.show', $hotel->id) }}">
+                            <div class="sub-main">
+                                <div class="img-sec p-rel">
+                                    <div class="hover-img p-rel">
+                                    </div>
+                                    <span>Rs {{ $hotel->price_from }} / Night</span>
+                                    <img style="width: 351px; height: 275px" src="{{ asset($hotel->thumbnail) }}"
+                                        alt="">
+
+                                    <h5>
+                                        {{ $hotel->title }}
+
+                                    </h5>
+
+
                                 </div>
-                                <span>Rs {{ $hotel->price_from }} / Night</span>
-                                <a href="javascript:;"> <img style="width: 351px; height: 275px"
-                                        src="{{ asset($hotel->thumbnail) }}" alt=""></a>
-                            </div>
-                            <div class="slider-content">
-                                <h5><a href="{{ route('hotel.show', $hotel->id) }}">{{ $hotel->title }}</a></h5>
-                                <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $hotel->address }}, {{ $hotel->cities->name_en }},
-                                        {{ $hotel->cities->district->name_en }}</span></a>
-                            </div>
-                        </div>
+                                <div class="slider-content">
+                                    <a href="javascript:;"> <span class="clr-text"><i class="fas fa-map-marker-alt"></i>
+                                            {{ $hotel->address }}, {{ $hotel->cities->name_en }},
+                                            {{ $hotel->cities->district->name_en }}</span></a>
+                                </div>
+                        </a>
                     </div>
-                @endforeach
-            @endisset
-        </div>
+            </div>
+            @endforeach
+        @endisset
+    </div>
     </div>
     <!-- footer section start -->
     <footer class="footer-main-wrapper">
