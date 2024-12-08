@@ -10,59 +10,61 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <div style="overflow-y:auto;">
                     @isset($new_request[0])
-                    <table id="myTable">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Email</th>
-                                <th class="px-4 py-2">Phone</th>
-                                <th class="px-4 py-2">Checkin</th>
-                                <th class="px-4 py-2">Checkout</th>
-                                <th class="px-4 py-2">Adults</th>
-                                <th class="px-4 py-2">childs</th>
-                                <th class="px-4 py-2">Price</th>
-                                <th class="px-4 py-2">Room Type</th>
-                                <th class="px-4 py-2">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($new_request as $booking)
+                        <table id="myTable">
+                            <thead>
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $booking->name }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->email }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->tpnumber }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->start_date }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->end_date }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->adult_count }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->child_count }}</td>
-                                    <td class="border px-4 py-2">{{ $booking->amount }}</td>
-
-                                    <?php
-                                    $room = '';
-                                    switch ($booking->room_type) {
-                                        case 1:
-                                            $room = 'Comfort Room';
-                                            break;
-                                        case 2:
-                                            $room = 'Luxury Room';
-                                            break;
-                                        case 3:
-                                            $room = 'Deluxe Room';
-                                            break;
-                                    }
-                                    echo '<td class="border px-4 py-2">' . $room . '</td>';
-                                    ?>
-
-
-                                    <td class="border px-4 py-2 align-middle text-center">
-                                        <a href="{{ route('approve', $booking->id) }}" class="btn btn-success " id="approve">Approve</a>
-                                        <div class="pb-3"></div>
-                                        <a href="{{ route('decline', $booking->id) }}" class="btn btn-danger " id="decline">Decline</a>
-                                    </td>
+                                    <th class="px-4 py-2">Name</th>
+                                    <th class="px-4 py-2">Email</th>
+                                    <th class="px-4 py-2">Phone</th>
+                                    <th class="px-4 py-2">Checkin</th>
+                                    <th class="px-4 py-2">Checkout</th>
+                                    <th class="px-4 py-2">Adults</th>
+                                    <th class="px-4 py-2">childs</th>
+                                    <th class="px-4 py-2">Price</th>
+                                    <th class="px-4 py-2">Room Type</th>
+                                    <th class="px-4 py-2">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($new_request as $booking)
+                                    <tr>
+                                        <td class="border px-4 py-2">{{ $booking->name }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->email }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->tpnumber }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->start_date }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->end_date }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->adult_count }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->child_count }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->amount }}</td>
+
+                                        <?php
+                                        $room = '';
+                                        switch ($booking->room_type) {
+                                            case 1:
+                                                $room = 'Comfort Room';
+                                                break;
+                                            case 2:
+                                                $room = 'Luxury Room';
+                                                break;
+                                            case 3:
+                                                $room = 'Deluxe Room';
+                                                break;
+                                        }
+                                        echo '<td class="border px-4 py-2">' . $room . '</td>';
+                                        ?>
+
+
+                                        <td class="border px-4 py-2 align-middle text-center">
+                                            <a href="{{ route('approve', $booking->id) }}" class="btn btn-success "
+                                                id="approve">Approve</a>
+                                            <div class="pb-3"></div>
+                                            <a href="{{ route('decline', $booking->id) }}" class="btn btn-danger "
+                                                id="decline">Decline</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     @else
                         <p class="text-center">No new booking requests Yet.</p>
                     @endisset
@@ -85,7 +87,8 @@
                             confirmButtonText: 'Yes, Approve!'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = event.target.href; // Navigate to link href
+                                window.location.href = event.target
+                                .href; // Navigate to link href
                             }
                         });
                     });
@@ -107,7 +110,8 @@
                             confirmButtonText: 'Yes, Decline!'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = event.target.href; // Navigate to link href
+                                window.location.href = event.target
+                                .href; // Navigate to link href
                             }
                         });
                     });
@@ -120,33 +124,49 @@
             });
         </script>
 
-
-        @if (session('error'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: "Error",
-                    text: '{{ session('error') }}',
-                    icon: "error",
-                    confirmButtonColor: '#9FCED3',
-                });
-            });
-        </script>
-    @endif
-
-
-        @if (session('success'))
+        @if ($errors->any())
             <script>
+                let erroList = '';
+                @foreach ($errors->all() as $error)
+                    erroList += '{{ $error }}<br>';
+                @endforeach
                 document.addEventListener('DOMContentLoaded', function() {
                     Swal.fire({
-                        title: "Successfully Added!",
-                        // text: "Item Added Succesfully!",
-                        icon: "success",
+                        icon: "error",
+                        title: "Error",
+                        html: erroList,
+                        showConfirmButton: true,
                         confirmButtonColor: '#9FCED3',
                     });
                 });
             </script>
         @endif
+            @if (session('error'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            title: "Error",
+                            text: '{{ session('error') }}',
+                            icon: "error",
+                            confirmButtonColor: '#9FCED3',
+                        });
+                    });
+                </script>
+            @endif
+
+
+            @if (session('success'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            title: "Successfully Added!",
+                            // text: "Item Added Succesfully!",
+                            icon: "success",
+                            confirmButtonColor: '#9FCED3',
+                        });
+                    });
+                </script>
+            @endif
     </div>
 
 

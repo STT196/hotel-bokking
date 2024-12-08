@@ -506,6 +506,23 @@
         });
     </script>
 
+    @if ($errors->any())
+    <script>
+        let erroList = '';
+        @foreach ($errors->all() as $error)
+            erroList += '{{ $error }}<br>';
+        @endforeach
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                html: erroList,
+                showConfirmButton: true,
+                confirmButtonColor: '#9FCED3',
+            });
+        });
+    </script>
+    @endif
 
 
     @if (session('error'))

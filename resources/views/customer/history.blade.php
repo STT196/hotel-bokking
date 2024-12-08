@@ -30,9 +30,9 @@
                                 @foreach ($new_request as $booking)
                                     <tr>
                                         <td class="border px-4 py-2">{{ $booking->id }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->name }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->email }}</td>
-                                        <td class="border px-4 py-2">{{ $booking->tpnumber }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->hotel->title }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->hotel->email }}</td>
+                                        <td class="border px-4 py-2">{{ $booking->hotel->telephone}}</td>
                                         <td class="border px-4 py-2">{{ $booking->start_date }}</td>
                                         <td class="border px-4 py-2">{{ $booking->end_date }}</td>
                                         <td class="border px-4 py-2">{{ $booking->adult_count }}</td>

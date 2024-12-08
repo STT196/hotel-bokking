@@ -70,7 +70,7 @@
                                     </li>
                                     <li class="nav-item  wrap-nav-item">
                                         <a href="{{ route('hotels') }}" class="nav-link">
-                                            hotel
+                                            find hotel
 
                                         </a>
 
@@ -168,7 +168,7 @@
 
                 <ul>
                     <li><a href="{{ route('homepage') }}">Home</a></li>
-                    <li><a href="{{ route('hotels') }}">Hotels</a></li>
+                    <li><a href="{{ route('hotels') }}">Find Hotel</a></li>
                     @auth
                         <li>
                             @if (Auth::user()->user_type == 'customer')

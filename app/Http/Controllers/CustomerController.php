@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
     public function pending(){
-        $new_request = Reservation::with('user')->where('status','=',0)->where('user_id',Auth::user()->id)
+        $new_request = Reservation::with('user','hotel')->where('status','=',0)->where('user_id',Auth::user()->id)
         ->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('customer.pending',compact('new_request'));
     }
     public function history(){
-        $new_request = Reservation::with('user')->where('status','>',0)->where('user_id',Auth::user()->id)
+        $new_request = Reservation::with('user','hotel')->where('status','>',0)->where('user_id',Auth::user()->id)
         ->orderBy('created_at','desc')->get();
         // dd($new_request);
         return view('customer.history',compact('new_request'));
@@ -38,8 +39,8 @@ class CustomerController extends Controller
         }
         // dd($new_request);
 
-        $start_date = \Carbon\Carbon::parse($new_request->start_date);
-        $end_date = \Carbon\Carbon::parse($new_request->end_date);
+        $start_date = Carbon::parse($new_request->start_date);
+        $end_date = Carbon::parse($new_request->end_date);
         $days = intval(1 + $start_date->diffInDays($end_date));
         $room_type_name = '';
         $price=0;
@@ -61,6 +62,7 @@ class CustomerController extends Controller
         $data=[
             'invoice_id'=>$new_request->id,
             'customer_name'=>$new_request->name,
+            'customer_tp'=>$new_request->tpnumber,
             'hotel_name'=>$new_request->hotel->Title,
             'hotel_address'=>$new_request->hotel->address,
             'children'=>$new_request->child_count,

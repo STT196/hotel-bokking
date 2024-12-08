@@ -291,7 +291,7 @@
                                 @csrf
                                 <ul>
                                     <li>
-                                        <input type="text" placeholder="Name" value="{{Auth::user() ? Auth::user()->name : ''}}" name="name" required>
+                                        <input  type="text" placeholder="Name" value="{{Auth::user() ? Auth::user()->name : ''}}" name="name" required>
 
                                     </li>
                                     <li>

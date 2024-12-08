@@ -25,6 +25,8 @@
                 <td class="w-half">
                     <div><h4>Customer</h4></div>
                     <div>{{$data['customer_name']}}</div>
+                    <div>TP: {{$data['customer_tp']}}</div>
+
 
                 </td>
                 <td class="w-half">

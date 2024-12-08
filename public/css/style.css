@@ -127,6 +127,7 @@ select,
 button,
 textarea {
 	outline: none;
+    background:#e6e6e6;
 }
 input:focus,
 select:focus,
