@@ -87,10 +87,10 @@
                                     @guest
 
                                         <li class="nav-item">
-                                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                                            <a href="{{ route('login') }}" class="btn btn-outline-dark">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+                                            <a href="{{ route('register') }}" class="btn btn-outline-dark">Register</a>
                                         </li>
                                     @endguest
                                     @auth

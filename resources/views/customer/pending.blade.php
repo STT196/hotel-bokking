@@ -13,9 +13,9 @@
                     <table id="myTable">
                         <thead>
                             <tr>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Email</th>
-                                <th class="px-4 py-2">Phone</th>
+                                <th class="px-4 py-2">Hotel Name</th>
+                                <th class="px-4 py-2">Hotel Email</th>
+                                <th class="px-4 py-2">Hotel Phone Number</th>
                                 <th class="px-4 py-2">Checkin</th>
                                 <th class="px-4 py-2">Checkout</th>
                                 <th class="px-4 py-2">Adults</th>

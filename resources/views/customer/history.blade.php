@@ -14,9 +14,9 @@
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2">Invoice No</th>
-                                    <th class="px-4 py-2">Name</th>
-                                    <th class="px-4 py-2">Email</th>
-                                    <th class="px-4 py-2">Phone</th>
+                                    <th class="px-4 py-2">Hotel Name</th>
+                                    <th class="px-4 py-2">Hotel Email</th>
+                                    <th class="px-4 py-2">Hotel Phone Number</th>
                                     <th class="px-4 py-2">Checkin</th>
                                     <th class="px-4 py-2">Checkout</th>
                                     <th class="px-4 py-2">Adults</th>
@@ -69,15 +69,15 @@
                                         echo '<td class="border px-4 py-2">' . $status . '</td>';
                                         ?>
                                         @if ($booking->status != 3)
-
-                                        <td class="border px-4 py-2 align-middle text-center">
-                                           <a href="{{ route('cus.recipet', $booking->id) }}" class="btn btn-success " target="_blank">
-                                               View
-                                           </a>
-                                           <div class="pb-3"></div>
-                                       </td>
-                                       @else
-                                       <td class="border px-4 py-2"></td>
+                                            <td class="border px-4 py-2 align-middle text-center">
+                                                <a href="{{ route('cus.recipet', $booking->id) }}" class="btn btn-success "
+                                                    target="_blank">
+                                                    View
+                                                </a>
+                                                <div class="pb-3"></div>
+                                            </td>
+                                        @else
+                                            <td class="border px-4 py-2"></td>
                                         @endif
                                     </tr>
                                 @endforeach
@@ -106,7 +106,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = event.target
-                                .href; // Navigate to link href
+                                    .href; // Navigate to link href
                             }
                         });
                     });
@@ -129,7 +129,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = event.target
-                                .href; // Navigate to link href
+                                    .href; // Navigate to link href
                             }
                         });
                     });
@@ -143,18 +143,18 @@
         </script>
 
 
-      @if (session('error'))
-      <script>
-          document.addEventListener('DOMContentLoaded', function() {
-              Swal.fire({
-                  title: "Error",
-                  text: '{{ session('error') }}',
-                  icon: "error",
-                  confirmButtonColor: '#9FCED3',
-              });
-          });
-      </script>
-  @endif
+        @if (session('error'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        title: "Error",
+                        text: '{{ session('error') }}',
+                        icon: "error",
+                        confirmButtonColor: '#9FCED3',
+                    });
+                });
+            </script>
+        @endif
 
         @if (session('success'))
             <script>
